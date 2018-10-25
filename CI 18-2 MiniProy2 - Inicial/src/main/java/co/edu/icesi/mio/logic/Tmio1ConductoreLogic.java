@@ -1,5 +1,10 @@
 package co.edu.icesi.mio.logic;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -53,5 +58,36 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic{
 		// TODO Auto-generated method stub
 		return tc.findByCedula(em, cedula);
 	}
+	//Falta comprobar que sea numerica
+	public boolean validateCedula(String cedula) {
+		return cedula!=null;
+	}
+	//Validar nombre
+	public boolean validateNombre(String nombre) {
+		return nombre!=null && nombre.length()>=3;
+	}
+	//Validar apellidos
+	public boolean validateApellidos (String apellidos) {
+		return apellidos!=null && apellidos.length()>=3;
+	}
+	//Validar en la fecha de nacimiento que sea mayor de edad
+	@SuppressWarnings("deprecation")
+	public boolean validateFechaNac(Date fechaNacimiento) {
+    LocalDate ahora = LocalDate.now();
+    int añoahora = ahora.getYear();
+    ahora.getYear();
+    int añoNacimiento=fechaNacimiento.getYear();
+
+		
+		return fechaNacimiento!=null && (añoNacimiento-añoahora)>=18;
+	}
+	
+	public boolean validateFechaContrato(Date fechaContratacion) {
+		 LocalDate ahora = LocalDate.now();
+		 LocalDate contrato = fechaContratacion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		 return contrato.getDayOfMonth() < ahora.getDayOfMonth();
+	}
+	
+	
 
 }
