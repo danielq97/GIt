@@ -29,7 +29,9 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 	@Override
 	public void delete(EntityManager em, Tmio1Servicio ruta) {
 		// TODO Auto-generated method stub
-     		
+     		String x;
+     		String y;
+     		String z;
 	}
 
 	@Override
