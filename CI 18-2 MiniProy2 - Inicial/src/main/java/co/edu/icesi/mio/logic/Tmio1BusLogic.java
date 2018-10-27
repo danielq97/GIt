@@ -17,6 +17,8 @@ public class Tmio1BusLogic implements ITmio1BusLogic{
 	public void create(Tmio1Bus bus) {
 		// TODO Auto-generated method stub
 		
+		String x = "";
+		
 	}
 
 	@Override
