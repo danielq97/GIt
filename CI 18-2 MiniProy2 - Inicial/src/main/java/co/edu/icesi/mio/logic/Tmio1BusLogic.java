@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import co.edu.icesi.mio.dao.ITmio1_Buses_DAO;
 import co.edu.icesi.mio.exceptions.LogicException;
 import co.edu.icesi.mio.model.Tmio1Bus;
@@ -14,10 +17,13 @@ public class Tmio1BusLogic implements ITmio1BusLogic{
 	private ITmio1_Buses_DAO ib;
 	
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void create(Tmio1Bus bus) {
-		// TODO Auto-generated method stub
-		
-		String x = "";
+
+		//Se valida que se ingrese un bus
+		if (bus == null) {
+			
+		}
 		
 	}
 
