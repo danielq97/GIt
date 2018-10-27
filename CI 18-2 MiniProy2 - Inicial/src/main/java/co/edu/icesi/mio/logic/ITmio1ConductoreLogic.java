@@ -15,10 +15,10 @@ public interface ITmio1ConductoreLogic {
 
 	public void delete(Tmio1Conductore conductor) throws LogicException;
 
-	public List<Tmio1Conductore> findByName(EntityManager em, String name) throws LogicException;
+	public List<Tmio1Conductore> findByName(String name) throws LogicException;
 
-	public List<Tmio1Conductore> findByLastName(EntityManager em, String lastname) throws LogicException;
+	public List<Tmio1Conductore> findByLastName(String lastname) throws LogicException;
 
-	public Tmio1Conductore findByCedula(EntityManager em, String cedula) throws LogicException;
+	public Tmio1Conductore findByCedula(String cedula) throws LogicException;
 
 }

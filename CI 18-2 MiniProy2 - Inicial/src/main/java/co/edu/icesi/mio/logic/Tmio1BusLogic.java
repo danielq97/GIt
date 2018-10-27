@@ -32,7 +32,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 
 		// Se valida que se ingrese una placa
-		if (bus.getPlaca() == null) {
+		if (bus.getPlaca() == null || bus.getPlaca().trim().equals("")) {
 			throw new LogicException("Debe ingresar una placa");
 		}
 		// Se valida que la placa tenga seis caracteres
@@ -46,7 +46,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 
 		// Se valida que se ingrese una marca
-		if (bus.getMarca() == null) {
+		if (bus.getMarca() == null || bus.getMarca().trim().equals("")) {
 			throw new LogicException("Debe ingresar una marca");
 		}
 		// Se valida que la marca contenga minimo 3 caracteres
@@ -64,7 +64,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 
 		// Se valida que se ingrese un tipo de bus válido
-		if (bus.getTipo() == null) {
+		if (bus.getTipo() == null || bus.getTipo().trim().equals("")) {
 			throw new LogicException("Debe ingresar un tipo de bus");
 		}
 		// Se valida que el tipo ingresado corresponda a P, A o T
@@ -103,7 +103,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 
 		// Se valida que se ingrese una placa
-		if (bus.getPlaca() == null) {
+		if (bus.getPlaca() == null || bus.getPlaca().trim().equals("")) {
 			throw new LogicException("Debe ingresar una placa");
 		}
 		// Se valida que la placa tenga seis caracteres
@@ -117,7 +117,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 
 		// Se valida que se ingrese una marca
-		if (bus.getMarca() == null) {
+		if (bus.getMarca() == null || bus.getMarca().trim().equals("")) {
 			throw new LogicException("Debe ingresar una marca");
 		}
 		// Se valida que la marca contenga minimo 3 caracteres
@@ -135,7 +135,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 
 		// Se valida que se ingrese un tipo de bus válido
-		if (bus.getTipo() == null) {
+		if (bus.getTipo() == null || bus.getTipo().trim().equals("")) {
 			throw new LogicException("Debe ingresar un tipo de bus");
 		}
 		// Se valida que el tipo ingresado corresponda a P, A o T
@@ -206,7 +206,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 	public List<Tmio1Bus> findByType(String type) throws LogicException {
 		
 		// Se valida que se ingrese un tipo de bus
-		if (type == null) {
+		if (type == null || type.trim().equals("")) {
 			throw new LogicException("Debe ingresar un tipo de bus");
 		}
 		// Se valida que el tipo de bus sea de tipo 'P', 'A' o 'T'
