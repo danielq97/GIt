@@ -12,31 +12,35 @@ import co.edu.icesi.mio.dao.ITmio1_Buses_DAO;
 import co.edu.icesi.mio.exceptions.LogicException;
 import co.edu.icesi.mio.model.Tmio1Bus;
 
-public class Tmio1BusLogic implements ITmio1BusLogic{
+public class Tmio1BusLogic implements ITmio1BusLogic {
 
 	private ITmio1_Buses_DAO ib;
-	
+
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void create(Tmio1Bus bus) {
+	public void create(Tmio1Bus bus) throws LogicException {
 
-		//Se valida que se ingrese un bus
+		// Se valida que se ingrese un bus
 		if (bus == null) {
-			
+			throw new LogicException("Debe ingresar un bus");
 		}
-		
+		//
+		if (bus.getCapacidad().compareTo(new BigDecimal(0))==1) {
+			throw new LogicException("");
+		}
+
 	}
 
 	@Override
-	public void update(Tmio1Bus bus) {
+	public void update(Tmio1Bus bus) throws LogicException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void delete(Tmio1Bus bus) {
+	public void delete(Tmio1Bus bus) throws LogicException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -57,5 +61,4 @@ public class Tmio1BusLogic implements ITmio1BusLogic{
 		return ib.findByCapacity(em, capacity);
 	}
 
-	
 }
