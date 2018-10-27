@@ -16,10 +16,10 @@ public interface ITmio1BusLogic {
 
 	public void delete(Tmio1Bus bus) throws LogicException;
 
-	public List<Tmio1Bus> findByModel(EntityManager em, BigDecimal model) throws LogicException;
+	public List<Tmio1Bus> findByModel(BigDecimal model) throws LogicException;
 
-	public List<Tmio1Bus> findByType(EntityManager em, String type) throws LogicException;
+	public List<Tmio1Bus> findByType(String type) throws LogicException;
 
-	public List<Tmio1Bus> findByCapacity(EntityManager em, BigDecimal capacity) throws LogicException;
+	public List<Tmio1Bus> findByCapacity(BigDecimal capacity) throws LogicException;
 
 }
