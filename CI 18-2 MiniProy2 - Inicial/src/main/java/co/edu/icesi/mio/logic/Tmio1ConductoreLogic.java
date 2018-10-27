@@ -70,7 +70,7 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic{
 	public boolean validateApellidos (String apellidos) {
 		return apellidos!=null && apellidos.length()>=3;
 	}
-	//Validar en la fecha de nacimiento que sea mayor de edad
+	//Validar en la fecha de nacimiento que sea mayor de edad, revisar 
 	@SuppressWarnings("deprecation")
 	public boolean validateFechaNac(Date fechaNacimiento) {
     LocalDate ahora = LocalDate.now();
@@ -81,11 +81,11 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic{
 		
 		return fechaNacimiento!=null && (añoNacimiento-añoahora)>=18;
 	}
-	
+	//Este quedo bueno, pero toca probar
 	public boolean validateFechaContrato(Date fechaContratacion) {
 		 LocalDate ahora = LocalDate.now();
 		 LocalDate contrato = fechaContratacion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		 return contrato.getDayOfMonth() < ahora.getDayOfMonth();
+		 return contrato.isBefore(ahora);
 	}
 	
 	
