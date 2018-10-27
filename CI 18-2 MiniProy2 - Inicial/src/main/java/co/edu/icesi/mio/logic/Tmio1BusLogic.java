@@ -24,9 +24,9 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		if (bus == null) {
 			throw new LogicException("Debe ingresar un bus");
 		}
-		//
-		if (bus.getCapacidad().compareTo(new BigDecimal(0))==1) {
-			throw new LogicException("");
+		// Se valida que se ingrese una capacidad no nula y mayor a cero
+		if (bus.getCapacidad() == null || bus.getCapacidad().compareTo(new BigDecimal(0))<1) {
+			throw new LogicException("Debe ingresar una capacidad válida");
 		}
 
 	}
