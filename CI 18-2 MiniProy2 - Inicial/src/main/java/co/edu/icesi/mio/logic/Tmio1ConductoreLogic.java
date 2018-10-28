@@ -41,7 +41,7 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 			throw new LogicException("Debe ingresar una cédula");
 		}
 		// Se valida que la cédula sea numérica
-		if (!isNumeric(conductor.getCedula())) {
+		if (!Utilidades.isNumeric(conductor.getCedula())) {
 			throw new LogicException("La cédula debe ser de tipo numérica");
 		}
 
@@ -154,18 +154,6 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 		return contrato.isBefore(ahora);
 	}
 
-	// Valida si una cadena es numerica
-	private boolean isNumeric(String cadena) {
-		boolean resultado;
 
-		try {
-			Integer.parseInt(cadena);
-			resultado = true;
-		} catch (NumberFormatException excepcion) {
-			resultado = false;
-		}
-
-		return resultado;
-	}
 
 }
