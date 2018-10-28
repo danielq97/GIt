@@ -1,11 +1,7 @@
 package co.edu.icesi.mio.logic;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -68,41 +64,183 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 			throw new LogicException("Debe ingresar la fecha de nacimiento del conductor");
 		}
 		// Se valida que el conductor sea mayor de edad
-		// if (validateFechaNac(conductor.getFechaNacimiento())) {
-		//
-		// }
+		if (!Utilidades.isLegalAge(conductor.getFechaNacimiento())) {
+			throw new LogicException("El conductor debe ser mayor de edad");
+		}
+
+		// Se valida que se ingrese una fecha de contrataciÛn
+		if (conductor.getFechaContratacion() == null) {
+			throw new LogicException("Debe ingresar una fecha de contrataciÛn");
+		}
+		// Se valida que la fecha de contrataciÛn sea menor a la fecha actual
+		if (!Utilidades.validateFechaContrato(conductor.getFechaContratacion())) {
+			throw new LogicException("La fecha de contrataciÛn debe ser antes de la fecha actual");
+		}
+
+		// Se valida que el conductor no exista en la base de datos
+		Tmio1Conductore c = tc.findByCedula(em, conductor.getCedula());
+		if (c != null) {
+			throw new LogicException("El conductor con n˙mero de cÈdula: " + conductor.getCedula() + " ya existe");
+		}
+
+		tc.save(em, conductor);
 
 	}
 
 	@Override
 	public void update(Tmio1Conductore conductor) throws LogicException {
-		// TODO Auto-generated method stub
+
+		// Se valida que se ingrese un conductor
+		if (conductor == null) {
+			throw new LogicException("Debe ingresar un conductor");
+		}
+
+		// Se valida que se ingrese una c√©dula
+		if (conductor.getCedula() == null || conductor.getCedula().trim().equals("")) {
+			throw new LogicException("Debe ingresar una c√©dula");
+		}
+		// Se valida que la c√©dula sea num√©rica
+		if (!Utilidades.isNumeric(conductor.getCedula())) {
+			throw new LogicException("La c√©dula debe ser de tipo num√©rica");
+		}
+
+		// Se valida que el conductor tenga nombre
+		if (conductor.getNombre() == null || conductor.getNombre().trim().equals("")) {
+			throw new LogicException("Debe ingresar el nombre del conductor");
+		}
+		// Se valida que el nombre contenga al menos 3 caracteres
+		if (conductor.getNombre().length() < 3) {
+			throw new LogicException("El nombre del conductor debe contener al menos 3 caracteres");
+		}
+
+		// Se valida que se ingrese el apellido del conductor
+		if (conductor.getApellidos() == null || conductor.getApellidos().trim().equals("")) {
+			throw new LogicException("Debe ingresar el apellido del conductor");
+		}
+		// Se valida que el apellido sea almenos de 3 caracteres
+		if (conductor.getApellidos().length() < 3) {
+			throw new LogicException("El apellido del conductor debe contener al menos 3 caracteres");
+		}
+
+		// Se valida que se ingrese la fecha de nacimiento del conductor
+		if (conductor.getFechaNacimiento() == null) {
+			throw new LogicException("Debe ingresar la fecha de nacimiento del conductor");
+		}
+		// Se valida que el conductor sea mayor de edad
+		if (!Utilidades.isLegalAge(conductor.getFechaNacimiento())) {
+			throw new LogicException("El conductor debe ser mayor de edad");
+		}
+
+		// Se valida que se ingrese una fecha de contrataciÛn
+		if (conductor.getFechaContratacion() == null) {
+			throw new LogicException("Debe ingresar una fecha de contrataciÛn");
+		}
+		// Se valida que la fecha de contrataciÛn sea menor a la fecha actual
+		if (!Utilidades.validateFechaContrato(conductor.getFechaContratacion())) {
+			throw new LogicException("La fecha de contrataciÛn debe ser antes de la fecha actual");
+		}
+
+		// Se valida que el conductor exista en la base de datos
+		Tmio1Conductore c = tc.findByCedula(em, conductor.getCedula());
+		if (c == null) {
+			throw new LogicException("El conductor con n˙mero de cÈdula: " + conductor.getCedula() + " no existe");
+		}
+
+		tc.update(em, conductor);
 
 	}
 
 	@Override
 	public void delete(Tmio1Conductore conductor) throws LogicException {
-		// TODO Auto-generated method stub
+
+		// Se valida que se ingrese un conductor
+		if (conductor == null) {
+			throw new LogicException("Debe ingresar un conductor");
+		}
+
+		// Se valida que se ingrese una c√©dula
+		if (conductor.getCedula() == null || conductor.getCedula().trim().equals("")) {
+			throw new LogicException("Debe ingresar una c√©dula");
+		}
+		// Se valida que la c√©dula sea num√©rica
+		if (!Utilidades.isNumeric(conductor.getCedula())) {
+			throw new LogicException("La c√©dula debe ser de tipo num√©rica");
+		}
+
+		// Se valida que el conductor no exista en la base de datos
+		Tmio1Conductore c = tc.findByCedula(em, conductor.getCedula());
+		if (c == null) {
+			throw new LogicException("El conductor con n˙mero de cÈdula: " + conductor.getCedula() + " no existe");
+		}
+
+		tc.delete(em, conductor);
 
 	}
 
 	@Override
 	public List<Tmio1Conductore> findByName(String name) throws LogicException {
-		// TODO Auto-generated method stub
-		return tc.findByName(em, name);
+
+		// Se valida que se ingrese el nombre del conductor
+		if (name == null || name.trim().equals("")) {
+			throw new LogicException("Debe ingresar el nombre del conductor");
+		}
+		// Se valida que el nombre contenga al menos 3 caracteres
+		if (name.length() < 3) {
+			throw new LogicException("El nombre del conductor debe contener al menos 3 caracteres");
+		}
+
+		// Se valida que existan conductores con el nombre pasado por par·metro
+		List<Tmio1Conductore> lC = tc.findByName(em, name);
+		if (lC == null) {
+			throw new LogicException("No existen conductores con nombre: " + name);
+		}
+
+		return lC;
 	}
 
 	@Override
 	public List<Tmio1Conductore> findByLastName(String lastname) throws LogicException {
-		// TODO Auto-generated method stub
-		return tc.findByLastName(em, lastname);
+
+		// Se valida que se ingrese el apellido del conductor
+		if (lastname == null || lastname.trim().equals("")) {
+			throw new LogicException("Debe ingresar el apellido del conductor");
+		}
+		// Se valida que el apellido sea almenos de 3 caracteres
+		if (lastname.length() < 3) {
+			throw new LogicException("El apellido del conductor debe contener al menos 3 caracteres");
+		}
+
+		// Se valida que existan conductores con el apellido pasado por par·metro
+		List<Tmio1Conductore> lC = tc.findByLastName(em, lastname);
+		if (lC == null) {
+			throw new LogicException("No existen conductores con el apellido: " + lastname);
+		}
+
+		return lC;
 	}
 
 	@Override
 	public Tmio1Conductore findByCedula(String cedula) throws LogicException {
-		// TODO Auto-generated method stub
-		return tc.findByCedula(em, cedula);
+
+		// Se valida que se ingrese una c√©dula
+		if (cedula == null || cedula.trim().equals("")) {
+			throw new LogicException("Debe ingresar una c√©dula");
+		}
+		// Se valida que la c√©dula sea num√©rica
+		if (!Utilidades.isNumeric(cedula)) {
+			throw new LogicException("La c√©dula debe ser de tipo num√©rica");
+		}
+		
+		// Se valida que el conductor exista en la base de datos
+		Tmio1Conductore c = tc.findByCedula(em, cedula);
+		if (c == null) {
+			throw new LogicException("El conductor con n˙mero de cÈdula: " + cedula + " no existe");
+		}
+		
+		return c;
 	}
+	
+	
 
 	// Falta comprobar que sea numerica
 	public boolean validateCedula(String cedula) {
@@ -119,9 +257,11 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 		return apellidos != null && apellidos.length() >= 3;
 	}
 
-	// Jos√©: Ve Daniel creo que no es preciso el m√©todo porque si alguien naci√≥ en
+	// Jos√©: Ve Daniel creo que no es preciso el m√©todo porque si alguien naci√≥
+	// en
 	// el 2000 pero en diciembre y hace la comparaci√≥n por los a√±os con la fecha
-	// actual entonces va a decir que s√≠ tiene la mayor√≠a de edad lo cual es un error.
+	// actual entonces va a decir que s√≠ tiene la mayor√≠a de edad lo cual es un
+	// error.
 	// Validar en la fecha de nacimiento que sea mayor de edad, revisar
 	@SuppressWarnings("deprecation")
 	public boolean validateFechaNac(Date fechaNacimiento) {
@@ -133,27 +273,11 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 		return (anioNacimiento - anioAhora) >= 18;
 	}
 
-	// Lo terminar√© luego lo saqu√© de : https://es.stackoverflow.com/questions/13777/obtener-edad-a-partir-de-la-fecha-de-nacimiento-en-java
-	private boolean isLegal(Date fechaNacimiento) {
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate fechaNac = LocalDate.parse("15/08/1993", fmt);
-		LocalDate ahora = LocalDate.now();
-
-		Period periodo = Period.between(fechaNac, ahora);
-
-		if (false) {
-
-		}
-		return true;
-	}
-
 	// Este quedo bueno, pero toca probar
 	public boolean validateFechaContrato(Date fechaContratacion) {
 		LocalDate ahora = LocalDate.now();
 		LocalDate contrato = fechaContratacion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		return contrato.isBefore(ahora);
 	}
-
-
 
 }

@@ -178,6 +178,8 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		if (b == null) {
 			throw new LogicException("El bus con id: " + bus.getId() + " no existe");
 		}
+		
+		ib.delete(em, bus);
 
 	}
 
