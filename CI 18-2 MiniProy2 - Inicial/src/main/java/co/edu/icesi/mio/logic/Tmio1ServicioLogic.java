@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.icesi.mio.dao.ITmio1_Conductores_DAO;
 import co.edu.icesi.mio.dao.ITmio1_Servicios_DAO;
@@ -23,12 +25,16 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 	private ITmio1_Servicios_DAO is;
 	
 	@Autowired
-	private ITmio1_Conductores_DAO tc;
+	private ITmio1ConductoreLogic conductoreLogic;
+	
+	@Autowired
+	private ITmio1BusLogic busLogic;
 
 	@PersistenceUnit
 	private EntityManager em;
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void create(Tmio1Servicio servicio) throws LogicException {
 		
 		// Se valida que se ingrese un servicio
@@ -36,40 +42,42 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 			throw new LogicException("Debe ingresar un servicio");
 		}
 		
-		// Se valida que se ingrese la llave foranea
 		Tmio1ServicioPK kF = servicio.getId();
+		
+		// Se valida que se ingrese la llave foranea
 		if (kF == null) {
 			throw new LogicException("Debe ingresar una llave foranea");
 		}
-		// Se valida que se ingrese la cédula del conductor
-		if (kF.getCedulaConductor() == null || kF.getCedulaConductor().trim().equals("")) {
-			throw new LogicException("Debe ingresar la cédula del coductor asignado para el servicio");
+		
+		// Se valida que exista un conductor con la cédula que posee la clave foranea
+		conductoreLogic.findByCedula(kF.getCedulaConductor());
+		// Se valida que el conductor del servicio exista en la base de datos
+		conductoreLogic.findByCedula(servicio.getTmio1Conductore().getCedula());
+		// Se valida que la cédula del conductor conincida con la cédula que posee la clave foranea
+		if (kF.getCedulaConductor().equals(servicio.getTmio1Conductore().getCedula())) {
+			throw new LogicException("La cédula del conductor no coincide con la cédula que posee la clave foranea");
 		}
-		// Se valida que el conductor con la cédula pasada por parámetro exista
-		Tmio1Conductore c = tc.findByCedula(em, kF.getCedulaConductor());
-		if (c == null) {
-			throw new LogicException("El conductor con id: "+kF.getCedulaConductor()+" no existe");
-		}
-		// Se valida que se ingrese 
-		if (false) {
-			
-		}
+		
+		// TODO: cómo valido que los buses existan y que las rutas también si sus respectivas clases de la lógica no poseen un método para hacer la consulta por su id??
 
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void update(Tmio1Servicio servicio) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void delete(Tmio1Servicio servicio) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Tmio1Servicio> findByRangeOfDates(Calendar fechaInicio, Calendar fechaFin) throws LogicException {
 		// TODO Auto-generated method stub
 		return is.findByRangeOfDates(em, fechaInicio, fechaFin);

@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.icesi.mio.dao.ITmio1_Rutas_DAO;
 import co.edu.icesi.mio.exceptions.LogicException;
@@ -21,6 +23,7 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 	private EntityManager em;
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void create(Tmio1Ruta ruta) throws LogicException{
 
 		// Se valida que se ingrese una ruta
@@ -100,6 +103,7 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void update(Tmio1Ruta ruta) throws LogicException {
 
 		// Se valida que se ingrese una ruta
@@ -179,6 +183,7 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void delete(Tmio1Ruta ruta) throws LogicException {
 
 		// Se valida que se ingrese una ruta
@@ -203,6 +208,7 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Tmio1Ruta> findByRangeOfDays(BigDecimal diaInicio, BigDecimal diaFin) throws LogicException {
 
 		// Se valida que se ingrese un día de inicio

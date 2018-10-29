@@ -10,6 +10,8 @@ import javax.persistence.PersistenceUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.icesi.mio.dao.ITmio1_Conductores_DAO;
 import co.edu.icesi.mio.exceptions.LogicException;
@@ -25,6 +27,7 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 	private EntityManager em;
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void create(Tmio1Conductore conductor) throws LogicException {
 
 		// Se valida que se ingrese un conductor
@@ -88,6 +91,7 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void update(Tmio1Conductore conductor) throws LogicException {
 
 		// Se valida que se ingrese un conductor
@@ -151,6 +155,7 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void delete(Tmio1Conductore conductor) throws LogicException {
 
 		// Se valida que se ingrese un conductor
@@ -178,6 +183,7 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Tmio1Conductore> findByName(String name) throws LogicException {
 
 		// Se valida que se ingrese el nombre del conductor
@@ -199,6 +205,7 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Tmio1Conductore> findByLastName(String lastname) throws LogicException {
 
 		// Se valida que se ingrese el apellido del conductor
@@ -220,6 +227,7 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Tmio1Conductore findByCedula(String cedula) throws LogicException {
 
 		// Se valida que se ingrese una cédula

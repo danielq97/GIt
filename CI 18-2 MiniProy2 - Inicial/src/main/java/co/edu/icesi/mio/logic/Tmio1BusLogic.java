@@ -30,6 +30,8 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		if (bus == null) {
 			throw new LogicException("Debe ingresar un bus");
 		}
+		
+		//TODO: Preguntar: si se debe validar los id autogenerados??
 
 		// Se valida que se ingrese una placa
 		if (bus.getPlaca() == null || bus.getPlaca().trim().equals("")) {
@@ -95,6 +97,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void update(Tmio1Bus bus) throws LogicException {
 
 		// Se valida que se ingrese un bus
@@ -165,6 +168,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void delete(Tmio1Bus bus) throws LogicException {
 
 		// Se valida que se ingrese un bus
@@ -184,6 +188,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Tmio1Bus> findByModel(BigDecimal model) throws LogicException {
 
 		//Se valida que se ingrese un modelo
@@ -205,6 +210,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Tmio1Bus> findByType(String type) throws LogicException {
 		
 		// Se valida que se ingrese un tipo de bus
@@ -226,6 +232,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Tmio1Bus> findByCapacity(BigDecimal capacity) throws LogicException {
 		
 		// Se valida que se ingrese una capacidad no nula
