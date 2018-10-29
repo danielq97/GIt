@@ -59,6 +59,20 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		}
 		
 		// TODO: cómo valido que los buses existan y que las rutas también si sus respectivas clases de la lógica no poseen un método para hacer la consulta por su id??
+		
+		// Se valida que se ingrese la fecha de inicio del servicio
+		if (kF.getFechaInicio() == null) {
+			throw new LogicException("Debe ingresar una fecha de inicio del servicio");
+		}
+		// Se valida que se ingrese la fecha de finalización del servicio
+		if (kF.getFechaFin() == null) {
+			throw new LogicException("Debe ingresar una fecha de finalización del servicio");
+		}
+		
+		// Se valida que la fecha de inicio sea antes que la fecha de finalización del servicio
+		if (!Utilidades.dateBeforeDateOrEqual(kF.getFechaInicio(), kF.getFechaFin())) {
+			throw new LogicException("La fecha de inicio no puede ser después de la fecha de finalización del servicio");
+		}
 
 	}
 

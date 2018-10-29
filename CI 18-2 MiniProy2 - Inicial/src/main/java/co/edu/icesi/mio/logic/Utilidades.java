@@ -40,6 +40,13 @@ public class Utilidades {
 		return contrato.isBefore(ahora);
 	}
 	
+	// Valida si una fecha es antes de otra fecha
+	public static boolean dateBeforeDateOrEqual(Date ini, Date fin) {
+		LocalDate dIni = ini.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate dFin = fin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		return dIni.isBefore(dFin) && dIni.isEqual(dFin);
+	}
+	
 	// Valida si un número se encuentra entre otros dos números
 	public static boolean isBetween(int ini, int fin, int number) {
 		boolean resultado = true;
