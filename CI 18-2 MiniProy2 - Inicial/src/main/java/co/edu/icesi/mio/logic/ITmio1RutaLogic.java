@@ -17,5 +17,5 @@ public interface ITmio1RutaLogic {
 
 	public void delete(Tmio1Ruta ruta) throws LogicException;
 
-	public List<Tmio1Ruta> findByRangeOfDays(EntityManager em, BigDecimal diaInicio, BigDecimal diaFin);
+	public List<Tmio1Ruta> findByRangeOfDays(BigDecimal diaInicio, BigDecimal diaFin) throws LogicException;
 }

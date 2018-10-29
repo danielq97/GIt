@@ -39,5 +39,14 @@ public class Utilidades {
 		LocalDate contrato = fechaContratacion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		return contrato.isBefore(ahora);
 	}
+	
+	// Valida si un número se encuentra entre otros dos números
+	public static boolean isBetween(int ini, int fin, int number) {
+		boolean resultado = true;
+		if ( ini>number || fin<number) {
+			resultado = false;
+		}
+		return resultado;
+	}
 
 }
