@@ -13,21 +13,27 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.icesi.mio.dao.ITmio1_Buses_DAO;
 import co.edu.icesi.mio.dao.Tmio1_Buses_DAO;
 import co.edu.icesi.mio.model.Tmio1Bus;
 import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
-
+@ContextConfiguration("/applicationContext.xml")
 public class Test_Tmio1_Buses_DAO {
 	
 	@PersistenceContext
     private EntityManager em;
     
-	private Tmio1_Buses_DAO busDAO;
+	@Autowired
+	private ITmio1_Buses_DAO busDAO;
 	
 	@Test
+	@Transactional(readOnly=false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void testSave() {
 			em.getTransaction().begin();
 			busDAO = new Tmio1_Buses_DAO();

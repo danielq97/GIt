@@ -28,14 +28,7 @@ public class Tmio1_Servicios_DAO implements ITmio1_Servicios_DAO{
 		return 	em.createQuery(jpql).getResultList();
 	}
 	
-	@Override
-	public List<Tmio1Servicio> servicesSaturdaysAndSundaysOrJustSundays(EntityManager em) {
-		BigDecimal saturday= new BigDecimal(6);
-		BigDecimal sunday= new BigDecimal(7);
-		String jpql = "Select s from Tmio1Servicio s Where (s.tmio1Ruta.diaInicio ="+ saturday+ "AND s.tmio1Ruta.diaFin = " + sunday+ 
-				") or (s.tmio1Ruta.diaInicio ="+ sunday+ "AND s.tmio1Ruta.diaFin = " + sunday + ")";
-		return 	em.createQuery(jpql).getResultList();
-	}
+
 
 	//normales
 	@Override

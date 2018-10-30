@@ -21,5 +21,5 @@ public interface ITmio1_Servicios_DAO {
 	//Adicionales
 	public List<Tmio1Servicio> findByRangeOfDates(EntityManager em, Calendar fechaInicio, Calendar fechaFin);
 	
-	public List<Tmio1Servicio> servicesSaturdaysAndSundaysOrJustSundays(EntityManager em);
+
 }
