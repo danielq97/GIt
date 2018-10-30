@@ -73,6 +73,11 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		if (!Utilidades.dateBeforeDateOrEqual(kF.getFechaInicio(), kF.getFechaFin())) {
 			throw new LogicException("La fecha de inicio no puede ser después de la fecha de finalización del servicio");
 		}
+		
+		// Se valida que el bus esté disponible
+		if (false) {
+			
+		}
 
 	}
 
