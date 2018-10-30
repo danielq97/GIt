@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: co.edu.icesi.mio.test.Test_Tmio1_Servicios_DAO
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.003 sec <<< FAILURE!
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.01 sec <<< FAILURE!
 testFindByRangeOfDates(co.edu.icesi.mio.test.Test_Tmio1_Servicios_DAO)  Time elapsed: 0.002 sec  <<< ERROR!
 java.lang.NullPointerException
 	at co.edu.icesi.mio.test.Test_Tmio1_Servicios_DAO.testFindByRangeOfDates(Test_Tmio1_Servicios_DAO.java:85)

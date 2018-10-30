@@ -1,65 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO" time="0.005" errors="4" skipped="0">
+<testsuite tests="4" failures="0" name="co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO" time="0.001" errors="4" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin"/>
-    <property name="java.vm.version" value="25.181-b13"/>
+    <property name="sun.boot.library.path" value="/usr/java/jdk1.8.0_171-amd64/jre/lib/amd64"/>
+    <property name="java.vm.version" value="25.171-b11"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\Juliana Jiménez\Documents\GitHub\GIt\CI 18-2 MiniProy2 - Inicial"/>
+    <property name="maven.multiModuleProjectDirectory" value="/home/computacion/Escritorio/GIt/CI 18-2 MiniProy2 - Inicial"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
-    <property name="path.separator" value=";"/>
+    <property name="path.separator" value=":"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
-    <property name="user.script" value=""/>
     <property name="user.country" value="CO"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.os.patch.level" value=""/>
+    <property name="sun.os.patch.level" value="unknown"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\Juliana Jiménez\Documents\GitHub\GIt\CI 18-2 MiniProy2 - Inicial"/>
-    <property name="java.runtime.version" value="1.8.0_181-b13"/>
-    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\endorsed"/>
+    <property name="user.dir" value="/home/computacion/Escritorio/GIt/CI 18-2 MiniProy2 - Inicial"/>
+    <property name="java.runtime.version" value="1.8.0_171-b11"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/usr/java/jdk1.8.0_171-amd64/jre/lib/endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\JULIAN~1\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="user.variant" value=""/>
-    <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Users\Juliana Jiménez\Documents\STS\Computacion\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf5933896916800991093.tmp"/>
-    <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_181/bin/../jre/bin/server;C:/Program Files/Java/jdk1.8.0_181/bin/../jre/bin;C:/Program Files/Java/jdk1.8.0_181/bin/../jre/lib/amd64;C:\Program Files\Java\jdk1.8.0_181\bin;C:\Program Files\Java\jdk1.6.0_23\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\frascati-runtime-1.4\bin;C:\Users\Juliana Jiménez\AppData\Local\Microsoft\WindowsApps;;D:\Documentos JOSÉ JIMÉNEZ\Herramientas\sts-bundle\sts-3.9.6.RELEASE;;."/>
+    <property name="os.name" value="Linux"/>
+    <property name="classworlds.conf" value="/home/computacion/Escritorio/WorkNUevooo/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf2217205774034122211.tmp"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="10.0"/>
-    <property name="user.home" value="C:\Users\Juliana Jiménez"/>
+    <property name="os.version" value="3.10.0-862.11.6.el7.x86_64"/>
+    <property name="user.home" value="/home/computacion"/>
     <property name="user.timezone" value="America/Bogota"/>
-    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="1.8"/>
-    <property name="file.encoding" value="Cp1252"/>
-    <property name="user.name" value="Juliana Jiménez"/>
-    <property name="java.class.path" value="D:\Documentos JOSÉ JIMÉNEZ\Herramientas\sts-bundle\sts-3.9.6.RELEASE\plugins\org.eclipse.m2e.maven.runtime_1.9.1.20180912-1600\jars\plexus-classworlds-2.5.2.jar"/>
+    <property name="user.name" value="computacion"/>
+    <property name="java.class.path" value="/opt/sts-bundle/sts-3.9.4.RELEASE/plugins/org.eclipse.m2e.maven.runtime_1.8.3.20180227-2135/jars/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_181\jre"/>
+    <property name="java.home" value="/usr/java/jdk1.8.0_171-amd64/jre"/>
     <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="es"/>
-    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.8.0_181"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
-    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_181\jre\classes"/>
+    <property name="java.version" value="1.8.0_171"/>
+    <property name="java.ext.dirs" value="/usr/java/jdk1.8.0_171-amd64/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="securerandom.source" value="file:/dev/./urandom"/>
+    <property name="sun.boot.class.path" value="/usr/java/jdk1.8.0_171-amd64/jre/lib/resources.jar:/usr/java/jdk1.8.0_171-amd64/jre/lib/rt.jar:/usr/java/jdk1.8.0_171-amd64/jre/lib/sunrsasign.jar:/usr/java/jdk1.8.0_171-amd64/jre/lib/jsse.jar:/usr/java/jdk1.8.0_171-amd64/jre/lib/jce.jar:/usr/java/jdk1.8.0_171-amd64/jre/lib/charsets.jar:/usr/java/jdk1.8.0_171-amd64/jre/lib/jfr.jar:/usr/java/jdk1.8.0_171-amd64/jre/classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="C:\Users\Juliana Jiménez\Documents\GitHub\GIt\CI 18-2 MiniProy2 - Inicial\EMBEDDED"/>
-    <property name="file.separator" value="\"/>
+    <property name="maven.home" value="/home/computacion/Escritorio/GIt/CI 18-2 MiniProy2 - Inicial/EMBEDDED"/>
+    <property name="file.separator" value="/"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="sun.desktop" value="windows"/>
-    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase classname="co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO" name="saveTest" time="0">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
@@ -94,9 +93,10 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
   </testcase>
-  <testcase classname="co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO" name="testUpdate" time="0">
+  <testcase classname="co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO" name="testFindByRangeOfDays" time="0">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO.testUpdate(Test_Tmio1_Rutas_DAO.java:60)
+	at co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO.setUpEscenario1(Test_Tmio1_Rutas_DAO.java:71)
+	at co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO.testFindByRangeOfDays(Test_Tmio1_Rutas_DAO.java:108)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -127,7 +127,7 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
   </testcase>
-  <testcase classname="co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO" name="testDelete" time="0.005">
+  <testcase classname="co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO" name="testDelete" time="0.001">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO.testDelete(Test_Tmio1_Rutas_DAO.java:119)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -160,10 +160,9 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
   </testcase>
-  <testcase classname="co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO" name="testFindByRangeOfDays" time="0">
+  <testcase classname="co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO" name="testUpdate" time="0">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO.setUpEscenario1(Test_Tmio1_Rutas_DAO.java:71)
-	at co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO.testFindByRangeOfDays(Test_Tmio1_Rutas_DAO.java:108)
+	at co.edu.icesi.mio.test.Test_Tmio1_Rutas_DAO.testUpdate(Test_Tmio1_Rutas_DAO.java:60)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

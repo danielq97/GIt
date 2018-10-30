@@ -1,4 +1,6 @@
-co\edu\icesi\mio\test\Test_Tmio1_Conductore_DAO.class
-co\edu\icesi\mio\test\Test_Tmio1_Servicios_DAO.class
-co\edu\icesi\mio\test\Test_Tmio1_Buses_DAO.class
-co\edu\icesi\mio\test\Test_Tmio1_Rutas_DAO.class
+co/edu/icesi/mio/test/Test_Tmio1_Buses_DAO.class
+co/edu/icesi/mio/testlogic/TestRutaLogic.class
+co/edu/icesi/mio/test/Test_Tmio1_Servicios_DAO.class
+co/edu/icesi/mio/testlogic/TestBusLogic.class
+co/edu/icesi/mio/test/Test_Tmio1_Rutas_DAO.class
+co/edu/icesi/mio/test/Test_Tmio1_Conductore_DAO.class
