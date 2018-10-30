@@ -253,4 +253,10 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		return lB;
 	}
 
+	@Override
+	public Tmio1Bus findById( Integer id) throws LogicException {
+		// TODO Auto-generated method stub
+		return ib.findById(em, id);
+	}
+
 }

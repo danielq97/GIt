@@ -30,6 +30,8 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 	@Autowired
 	private ITmio1BusLogic busLogic;
 
+	private ITmio1RutaLogic rutaLogic;
+	
 	@PersistenceUnit
 	private EntityManager em;
 
@@ -49,32 +51,32 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 			throw new LogicException("Debe ingresar una llave foranea");
 		}
 		
-		// Se valida que exista un conductor con la cédula que posee la clave foranea
+		// Se valida que exista un conductor con la cï¿½dula que posee la clave foranea
 		conductoreLogic.findByCedula(kF.getCedulaConductor());
 		// Se valida que el conductor del servicio exista en la base de datos
 		conductoreLogic.findByCedula(servicio.getTmio1Conductore().getCedula());
-		// Se valida que la cédula del conductor conincida con la cédula que posee la clave foranea
+		// Se valida que la cï¿½dula del conductor conincida con la cï¿½dula que posee la clave foranea
 		if (kF.getCedulaConductor().equals(servicio.getTmio1Conductore().getCedula())) {
-			throw new LogicException("La cédula del conductor no coincide con la cédula que posee la clave foranea");
+			throw new LogicException("La cï¿½dula del conductor no coincide con la cï¿½dula que posee la clave foranea");
 		}
 		
-		// TODO: cómo valido que los buses existan y que las rutas también si sus respectivas clases de la lógica no poseen un método para hacer la consulta por su id??
+		// TODO: cï¿½mo valido que los buses existan y que las rutas tambiï¿½n si sus respectivas clases de la lï¿½gica no poseen un mï¿½todo para hacer la consulta por su id??
 		
 		// Se valida que se ingrese la fecha de inicio del servicio
 		if (kF.getFechaInicio() == null) {
 			throw new LogicException("Debe ingresar una fecha de inicio del servicio");
 		}
-		// Se valida que se ingrese la fecha de finalización del servicio
+		// Se valida que se ingrese la fecha de finalizaciï¿½n del servicio
 		if (kF.getFechaFin() == null) {
-			throw new LogicException("Debe ingresar una fecha de finalización del servicio");
+			throw new LogicException("Debe ingresar una fecha de finalizaciï¿½n del servicio");
 		}
 		
-		// Se valida que la fecha de inicio sea antes que la fecha de finalización del servicio
+		// Se valida que la fecha de inicio sea antes que la fecha de finalizaciï¿½n del servicio
 		if (!Utilidades.dateBeforeDateOrEqual(kF.getFechaInicio(), kF.getFechaFin())) {
-			throw new LogicException("La fecha de inicio no puede ser después de la fecha de finalización del servicio");
+			throw new LogicException("La fecha de inicio no puede ser despuï¿½s de la fecha de finalizaciï¿½n del servicio");
 		}
 		
-		// Se valida que el bus esté disponible
+		// Se valida que el bus estï¿½ disponible
 		if (false) {
 			
 		}
