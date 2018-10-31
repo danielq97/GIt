@@ -22,5 +22,5 @@ public interface ITmio1BusLogic {
 
 	public List<Tmio1Bus> findByCapacity(BigDecimal capacity) throws LogicException;
 
-	public Tmio1Bus findById( Integer id) throws LogicException;
+	public Tmio1Bus findById(Integer id) throws LogicException;
 }

@@ -31,7 +31,10 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 			throw new LogicException("Debe ingresar un bus");
 		}
 		
-		//TODO: Preguntar: si se debe validar los id autogenerados??
+		// Se valida que se ingrese un identificador del bus
+		if (bus.getId() == null) {
+			throw new LogicException("Debe ingresar el identificador del bus");
+		}
 
 		// Se valida que se ingrese una placa
 		if (bus.getPlaca() == null || bus.getPlaca().trim().equals("")) {
@@ -40,11 +43,6 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		// Se valida que la placa tenga seis caracteres
 		if (bus.getPlaca().length() != 6) {
 			throw new LogicException("Debe ingresar una placa que sea de 6 caracteres");
-		}
-		// Se valida otro bus no tenga la misma placa
-		if (false) {
-			// TODO: Preguntar si no se debe hacer esta validación, y si es así ¿se
-			// consultaría desde aquí a la base de datos?
 		}
 
 		// Se valida que se ingrese una marca
@@ -84,9 +82,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 			throw new LogicException("Se debe ingresar una capacidad mayor a cero");
 		}
 
-		// TODO: no sé si es necesario
-		// Se valida que el bus no exista en la base de datos (si sí lo es, faltan más
-		// validaciones)
+		// Se valida que el bus no exista en la base de datos
 		Tmio1Bus b = ib.findById(em, bus.getId());
 		if (b != null) {
 			throw new LogicException("El bus con id: " + bus.getId() + " ya existe");
@@ -104,6 +100,11 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		if (bus == null) {
 			throw new LogicException("Debe ingresar un bus");
 		}
+		
+		// Se valida que se ingrese un identificador del bus
+		if (bus.getId() == null) {
+			throw new LogicException("Debe ingresar el identificador del bus");
+		}
 
 		// Se valida que se ingrese una placa
 		if (bus.getPlaca() == null || bus.getPlaca().trim().equals("")) {
@@ -112,11 +113,6 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		// Se valida que la placa tenga seis caracteres
 		if (bus.getPlaca().length() != 6) {
 			throw new LogicException("Debe ingresar una placa que sea de 6 caracteres");
-		}
-		// Se valida otro bus no tenga la misma placa
-		if (false) {
-			// TODO: Preguntar si no se debe hacer esta validación, y si es así ¿se
-			// consultaría desde aquí a la base de datos?
 		}
 
 		// Se valida que se ingrese una marca
@@ -156,7 +152,6 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 			throw new LogicException("Se debe ingresar una capacidad mayor a cero");
 		}
 
-		// TODO: no sé si es necesario (si sí lo es, faltan más validaciones)
 		// Se valida que el bus exista en la base de datos
 		Tmio1Bus b = ib.findById(em, bus.getId());
 		if (b == null) {
@@ -175,9 +170,13 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		if (bus == null) {
 			throw new LogicException("Debe ingresar un bus");
 		}
-		// TODO: no sé si es necesario
-		// Se valida que el bus exista en la base de datos (si sí lo es, faltan más
-		// validaciones)
+		
+		// Se valida que el bus posea un identificador
+		if (bus.getId() == null) {
+			throw new LogicException("El bus debe tener un identificador definido");
+		}
+		
+		// Se valida que el bus exista en la base de datos
 		Tmio1Bus b = ib.findById(em, bus.getId());
 		if (b == null) {
 			throw new LogicException("El bus con id: " + bus.getId() + " no existe");
@@ -255,8 +254,24 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 
 	@Override
 	public Tmio1Bus findById( Integer id) throws LogicException {
-		// TODO Auto-generated method stub
-		return ib.findById(em, id);
+
+		// Se valida que se ingrese un id
+		if (id == null) {
+			throw new LogicException("Debe ingresar un identificador");
+		}
+		
+		// Se valida que el identificador no sea menor a 0
+		if (id < 0) {
+			throw new LogicException("El identificador no puede ser menor a cero");
+		}
+		
+		// Se valida que exista bus con el identificador pasado por par�metro
+		Tmio1Bus b = ib.findById(em, id);
+		if (b == null) {
+			throw new LogicException("El bus con identificador: "+id + "no existe");
+		}
+		
+		return b;
 	}
 
 }

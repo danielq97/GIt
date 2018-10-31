@@ -1,8 +1,5 @@
 package co.edu.icesi.mio.logic;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -248,44 +245,4 @@ public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 		return c;
 	}
 	
-	
-
-	// Falta comprobar que sea numerica
-	public boolean validateCedula(String cedula) {
-		return cedula != null;
-	}
-
-	// Validar nombre
-	public boolean validateNombre(String nombre) {
-		return nombre != null && nombre.length() >= 3;
-	}
-
-	// Validar apellidos
-	public boolean validateApellidos(String apellidos) {
-		return apellidos != null && apellidos.length() >= 3;
-	}
-
-	// José: Ve Daniel creo que no es preciso el método porque si alguien nació
-	// en
-	// el 2000 pero en diciembre y hace la comparación por los años con la fecha
-	// actual entonces va a decir que sí tiene la mayoría de edad lo cual es un
-	// error.
-	// Validar en la fecha de nacimiento que sea mayor de edad, revisar
-	@SuppressWarnings("deprecation")
-	public boolean validateFechaNac(Date fechaNacimiento) {
-		LocalDate ahora = LocalDate.now();
-		int anioAhora = ahora.getYear();
-		int anioNacimiento = fechaNacimiento.getYear();
-
-		// Creo que va (anioahora - anioNacimiento)
-		return (anioAhora-anioNacimiento) >= 18;
-	}
-
-	// Este quedo bueno, pero toca probar
-	public boolean validateFechaContrato(Date fechaContratacion) {
-		LocalDate ahora = LocalDate.now();
-		LocalDate contrato = fechaContratacion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		return contrato.isBefore(ahora);
-	}
-
 }

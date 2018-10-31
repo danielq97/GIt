@@ -18,4 +18,6 @@ public interface ITmio1RutaLogic {
 	public void delete(Tmio1Ruta ruta) throws LogicException;
 
 	public List<Tmio1Ruta> findByRangeOfDays(BigDecimal diaInicio, BigDecimal diaFin) throws LogicException;
+	
+	public Tmio1Ruta findById(Integer id) throws LogicException;
 }
