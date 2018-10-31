@@ -98,28 +98,31 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		// Se valida que el bus esté disponible entre las fechas de inicio y fin del
 		// servicio
 		if (!Utilidades.isBusAvailable(servicio.getTmio1Bus(), servicio)) {
-			throw new LogicException("El bus no se encuentra disponible para este servicio para las fechas establecidas");
+			throw new LogicException(
+					"El bus no se encuentra disponible para este servicio para las fechas establecidas");
 		}
-		
-		// Se valida que el conductor esté disponible entre las fechas de inicio y fin del
+
+		// Se valida que el conductor esté disponible entre las fechas de inicio y fin
+		// del
 		// servicio
 		if (!Utilidades.isConductorAvailable(servicio.getTmio1Conductore(), servicio)) {
-			throw new LogicException("El conductor no se encuentra disponible para este servicio para las fechas establecidas");
+			throw new LogicException(
+					"El conductor no se encuentra disponible para este servicio para las fechas establecidas");
 		}
-		
+
 		// Se valida que el servicio no exista en la base de datos
 		Tmio1Servicio s = is.findById(em, servicio.getId());
 		if (s != null) {
 			throw new LogicException("El servicio ya existe");
 		}
-		
+
 		is.save(em, servicio);
 
 	}
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void update(Tmio1Servicio servicio) throws LogicException{
+	public void update(Tmio1Servicio servicio) throws LogicException {
 
 		// Se valida que se ingrese un servicio
 		if (servicio == null) {
@@ -183,28 +186,31 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		// Se valida que el bus esté disponible entre las fechas de inicio y fin del
 		// servicio
 		if (!Utilidades.isBusAvailable(servicio.getTmio1Bus(), servicio)) {
-			throw new LogicException("El bus no se encuentra disponible para este servicio para las fechas establecidas");
+			throw new LogicException(
+					"El bus no se encuentra disponible para este servicio para las fechas establecidas");
 		}
-		
-		// Se valida que el conductor esté disponible entre las fechas de inicio y fin del
+
+		// Se valida que el conductor esté disponible entre las fechas de inicio y fin
+		// del
 		// servicio
 		if (!Utilidades.isConductorAvailable(servicio.getTmio1Conductore(), servicio)) {
-			throw new LogicException("El conductor no se encuentra disponible para este servicio para las fechas establecidas");
+			throw new LogicException(
+					"El conductor no se encuentra disponible para este servicio para las fechas establecidas");
 		}
-		
+
 		// Se valida que el servicio exista en la base de datos
 		Tmio1Servicio s = is.findById(em, servicio.getId());
 		if (s == null) {
 			throw new LogicException("El servicio no existe");
 		}
-		
+
 		is.update(em, servicio);
-		
+
 	}
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void delete(Tmio1Servicio servicio) throws LogicException{
+	public void delete(Tmio1Servicio servicio) throws LogicException {
 
 		// Se valida que se ingrese un servicio
 		if (servicio == null) {
@@ -248,15 +254,15 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		if (servicio.getTmio1Ruta().getId() == kF.getIdRuta()) {
 			throw new LogicException("El id de la ruta asociada no coincide con el id de ruta de la clave foranea");
 		}
-		
+
 		// Se valida que el servicio exista en la base de datos
 		Tmio1Servicio s = is.findById(em, servicio.getId());
 		if (s == null) {
 			throw new LogicException("El servicio no existe");
 		}
-		
+
 		is.delete(em, servicio);
-		
+
 	}
 
 	@Override
@@ -267,25 +273,26 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		if (fechaInicio == null) {
 			throw new LogicException("Debe ingresar una fecha de inicio");
 		}
-		
+
 		// Se valida que se ingrese una fecha de finalización
 		if (fechaFin == null) {
 			throw new LogicException("Debe ingresar una fecha de finalización");
 		}
-		
+
 		// Se valida que la fecha de inicio sea antes o igual a la fecha de
 		// finalizaciï¿½n
 		if (!Utilidades.dateBeforeDateOrEqual(fechaInicio, fechaFin)) {
 			throw new LogicException(
 					"La fecha de inicio no puede ser despuï¿½s de la fecha de finalizaciï¿½n del servicio");
 		}
-		
+
 		// Se valida que existan servicios en el rango de fechas pasadas por parámetro
-		List<Tmio1Servicio> lS = null; //is.findByRangeOfDates(em, fechaInicio, fechaFin);
+		List<Tmio1Servicio> lS = is.findByRangeOfDates(em, Utilidades.toCalendar(fechaInicio),
+				Utilidades.toCalendar(fechaFin));
 		if (lS == null) {
 			throw new LogicException("No existen servicios en este rango de fechas");
 		}
-		
+
 		return lS;
 	}
 

@@ -3,6 +3,7 @@ package co.edu.icesi.mio.logic;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -113,5 +114,12 @@ public class Utilidades {
 		}
 		return disponible;
 	}
+	
+	// Convierte una fecha tipo Date a una fecha tipo Calendar
+	public static Calendar toCalendar(Date date){ 
+		  Calendar cal = Calendar.getInstance();
+		  cal.setTime(date);
+		  return cal;
+		}
 
 }
