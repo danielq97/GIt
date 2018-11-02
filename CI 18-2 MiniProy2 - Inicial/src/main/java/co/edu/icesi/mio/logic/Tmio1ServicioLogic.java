@@ -4,9 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,8 @@ import co.edu.icesi.mio.exceptions.LogicException;
 import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServicioPK;
 
+@Service
+@Scope("singleton")
 public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 
 	@Autowired
@@ -29,7 +33,7 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 	@Autowired
 	private ITmio1RutaLogic rutaLogic;
 
-	@PersistenceUnit
+	@PersistenceContext
 	private EntityManager em;
 
 	@Override

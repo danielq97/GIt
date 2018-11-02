@@ -16,7 +16,10 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import co.edu.icesi.mio.dao.Tmio1_Buses_DAO;
 import co.edu.icesi.mio.dao.Tmio1_Conductores_DAO;
@@ -28,6 +31,8 @@ import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServicioPK;
 import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("/applicationContext.xml")
 public class Test_Tmio1_Servicios_DAO {
 
 	@PersistenceContext

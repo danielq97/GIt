@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,18 +16,20 @@ import co.edu.icesi.mio.dao.ITmio1_Rutas_DAO;
 import co.edu.icesi.mio.exceptions.LogicException;
 import co.edu.icesi.mio.model.Tmio1Ruta;
 
+@Service
+@Scope("singleton")
 public class Tmio1RutaLogic implements ITmio1RutaLogic {
 
 	@Autowired
 	private ITmio1_Rutas_DAO ir;
 
-	@PersistenceUnit
+	@PersistenceContext
 	private EntityManager em;
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void create(Tmio1Ruta ruta) throws LogicException{
-
+		
 		// Se valida que se ingrese una ruta
 		if (ruta == null) {
 			throw new LogicException("Debe ingresar una ruta");
@@ -107,7 +111,7 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 		}
 		
 		ir.save(em, ruta);
-		
+				
 	}
 
 	@Override

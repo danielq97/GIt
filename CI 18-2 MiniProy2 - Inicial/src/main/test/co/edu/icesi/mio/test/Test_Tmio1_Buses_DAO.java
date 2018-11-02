@@ -13,8 +13,11 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +26,10 @@ import co.edu.icesi.mio.dao.Tmio1_Buses_DAO;
 import co.edu.icesi.mio.model.Tmio1Bus;
 import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
+
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
+//@Rollback(false)
 public class Test_Tmio1_Buses_DAO {
 	
 	@PersistenceContext
@@ -35,7 +41,6 @@ public class Test_Tmio1_Buses_DAO {
 	@Test
 	@Transactional(readOnly=false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void testSave() {
-			em.getTransaction().begin();
 			busDAO = new Tmio1_Buses_DAO();
 			
 			Tmio1Bus bus = new Tmio1Bus();
@@ -49,11 +54,11 @@ public class Test_Tmio1_Buses_DAO {
 			bus.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
 			
 			busDAO.save(em, bus);
-			em.getTransaction().commit();	
+//			em.getTransaction().commit();	
 			
 			Tmio1Bus bus1 = new Tmio1Bus();
 			
-			em.getTransaction().begin();
+//			em.getTransaction().begin();
 			bus1.setCapacidad(new BigDecimal(1000));
 			bus1.setMarca("Volvo");
 			bus1.setModelo(new BigDecimal(2015));
@@ -63,9 +68,9 @@ public class Test_Tmio1_Buses_DAO {
 			bus1.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
 			
 			busDAO.save(em, bus1);
-			em.getTransaction().commit();	
+//			em.getTransaction().commit();	
 			
-			em.getTransaction().begin();
+//			em.getTransaction().begin();
 			Tmio1Bus bus2 = new Tmio1Bus();
 			
 			bus2.setCapacidad(new BigDecimal(1700));
@@ -77,11 +82,11 @@ public class Test_Tmio1_Buses_DAO {
 			bus2.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
 			
 			busDAO.save(em, bus2);
-			em.getTransaction().commit();	
+//			em.getTransaction().commit();	
 			
 			Tmio1Bus bus3 = new Tmio1Bus();
 			
-			em.getTransaction().begin();
+//			em.getTransaction().begin();
 			bus3.setCapacidad(new BigDecimal(1050));
 			bus3.setMarca("Volvo");
 			bus3.setModelo(new BigDecimal(2016));
@@ -91,7 +96,7 @@ public class Test_Tmio1_Buses_DAO {
 			bus3.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
 			
 			busDAO.save(em, bus3);
-			em.getTransaction().commit();	
+//			em.getTransaction().commit();	
 	}
 	
 	@Test

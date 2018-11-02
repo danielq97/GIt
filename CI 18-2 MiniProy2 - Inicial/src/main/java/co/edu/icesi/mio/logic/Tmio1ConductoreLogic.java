@@ -3,9 +3,10 @@ package co.edu.icesi.mio.logic;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,12 +16,13 @@ import co.edu.icesi.mio.exceptions.LogicException;
 import co.edu.icesi.mio.model.Tmio1Conductore;
 
 @Service
+@Scope("singleton")
 public class Tmio1ConductoreLogic implements ITmio1ConductoreLogic {
 
 	@Autowired
 	private ITmio1_Conductores_DAO tc;
 
-	@PersistenceUnit
+	@PersistenceContext
 	private EntityManager em;
 
 	@Override
