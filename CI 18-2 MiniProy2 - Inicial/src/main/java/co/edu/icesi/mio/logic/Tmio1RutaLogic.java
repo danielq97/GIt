@@ -36,13 +36,13 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 		}
 		
 		// Se valida que la ruta posea un id
-		if (ruta.getId() == null) {
-			throw new LogicException("La ruta debe tener un id");
-		}
-		// Se valida que el id no sea menor a 0
-		if (ruta.getId() < 0) {
-			throw new LogicException("El id de la ruta no puede ser menor a 0");
-		}
+//		if (ruta.getId() == null) {
+//			throw new LogicException("La ruta debe tener un id");
+//		}
+//		// Se valida que el id no sea menor a 0
+//		if (ruta.getId() < 0) {
+//			throw new LogicException("El id de la ruta no puede ser menor a 0");
+//		}
 		
 		// Se valida que el número de la ruta no sea nulo
 		if (ruta.getNumero() == null || ruta.getNumero().trim().equals("")) {
@@ -105,10 +105,10 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 		}
 		
 		// Se valida que la ruta no exista en la base de datos
-		Tmio1Ruta r = ir.findById(em, ruta.getId());
-		if (r != null) {
-			throw new LogicException("La ruta con id: " + ruta.getId() + " ya existe");
-		}
+//		Tmio1Ruta r = ir.findById(em, ruta.getId());
+//		if (r != null) {
+//			throw new LogicException("La ruta con id: " + ruta.getId() + " ya existe");
+//		}
 		
 		ir.save(em, ruta);
 				
@@ -123,14 +123,14 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 			throw new LogicException("Debe ingresar una ruta");
 		}
 		
-		// Se valida que la ruta posea un id
-		if (ruta.getId() == null) {
-			throw new LogicException("La ruta debe tener un id");
-		}
-		// Se valida que el id no sea menor a 0
-		if (ruta.getId() < 0) {
-			throw new LogicException("El id de la ruta no puede ser menor a 0");
-		}
+//		// Se valida que la ruta posea un id
+//		if (ruta.getId() == null) {
+//			throw new LogicException("La ruta debe tener un id");
+//		}
+//		// Se valida que el id no sea menor a 0
+//		if (ruta.getId() < 0) {
+//			throw new LogicException("El id de la ruta no puede ser menor a 0");
+//		}
 		
 		// Se valida que el número de la ruta no sea nulo
 		if (ruta.getNumero() == null || ruta.getNumero().trim().equals("")) {

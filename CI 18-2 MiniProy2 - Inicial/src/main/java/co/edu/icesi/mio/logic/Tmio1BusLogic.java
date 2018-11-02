@@ -35,10 +35,10 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 			throw new LogicException("Debe ingresar un bus");
 		}
 		
-		// Se valida que se ingrese un identificador del bus
-		if (bus.getId() == null) {
-			throw new LogicException("Debe ingresar el identificador del bus");
-		}
+//		// Se valida que se ingrese un identificador del bus
+//		if (bus.getId() == null) {
+//			throw new LogicException("Debe ingresar el identificador del bus");
+//		}
 
 		// Se valida que se ingrese una placa
 		if (bus.getPlaca() == null || bus.getPlaca().trim().equals("")) {
@@ -87,10 +87,10 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 
 		// Se valida que el bus no exista en la base de datos
-		Tmio1Bus b = ib.findById(em, bus.getId());
-		if (b != null) {
-			throw new LogicException("El bus con id: " + bus.getId() + " ya existe");
-		}
+//		Tmio1Bus b = ib.findById(em, bus.getId());
+//		if (b != null) {
+//			throw new LogicException("El bus con id: " + bus.getId() + " ya existe");
+//		}
 
 		ib.save(em, bus);
 

@@ -5,16 +5,16 @@ import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import org.apache.commons.logging.Log;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import co.edu.icesi.mio.exceptions.LogicException;
-import co.edu.icesi.mio.logic.ITmio1BusLogic;
 import co.edu.icesi.mio.logic.ITmio1RutaLogic;
 import co.edu.icesi.mio.model.Tmio1Ruta;
 import co.edu.icesi.mio.model.Tmio1Servicio;
@@ -25,7 +25,8 @@ import co.edu.icesi.mio.model.Tmio1SitiosRuta;
 @ContextConfiguration("/applicationContext.xml")
 //@Rollback(false)
 public class TestRutaLogic {
-
+	
+	private static Logger logger = LoggerFactory.getLogger(TestRutaLogic.class);
 	
 	@Autowired
 	private ITmio1RutaLogic rutalogic;
