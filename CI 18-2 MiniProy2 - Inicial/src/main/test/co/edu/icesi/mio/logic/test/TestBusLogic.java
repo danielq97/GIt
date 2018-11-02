@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,14 +31,12 @@ public class TestBusLogic {
 
 	@Test
 	public void testCrearBus() {
-
-		assertNotNull(buslogic);
-
+		
 		Tmio1Bus tbus = new Tmio1Bus();
 
 		tbus.setCapacidad(new BigDecimal(230));
 		tbus.setMarca("Chev");
-		tbus.setModelo(new BigDecimal(2030));
+		tbus.setModelo(new BigDecimal(2040));
 		tbus.setTipo("A");
 		tbus.setPlaca("AZW456");
 
@@ -51,13 +50,69 @@ public class TestBusLogic {
 	
 	@Test
 	public void testModificarBus() {
-
-		Tmio1Bus tbus;
+		
 		try {
-			tbus = buslogic.findById(-44);
-		} catch (LogicException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			Tmio1Bus tbus = buslogic.findById(-44);
+			tbus.setCapacidad(new BigDecimal(23));
+			buslogic.update(tbus);
+			logger.info("El bus con placa "+tbus.getPlaca()+" se modificó correctamente");
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testEliminarBus() {
+		
+		try {
+			Tmio1Bus tbus = buslogic.findById(-44);
+			buslogic.delete(tbus);
+			logger.info("El bus con placa "+tbus.getPlaca()+" se eliminó correctamente");
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testFindByModel() {
+		
+		try {
+			List<Tmio1Bus> tbus = buslogic.findByModel(new BigDecimal(2030));
+			
+			printList(tbus);
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testFindByType() {
+		
+		try {
+			List<Tmio1Bus> tbus = buslogic.findByType("A");
+			
+			printList(tbus);
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testFindByCapacity() {
+		
+		try {
+			List<Tmio1Bus> tbus = buslogic.findByCapacity(new BigDecimal(23));
+			
+			printList(tbus);
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	public void printList (List lista) {
+		for (Object object : lista) {
+			logger.info("Lista");
+			logger.info(object.toString());
 		}
 	}
 

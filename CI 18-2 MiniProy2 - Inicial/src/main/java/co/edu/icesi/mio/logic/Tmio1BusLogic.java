@@ -106,9 +106,9 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 		
 		// Se valida que se ingrese un identificador del bus
-		if (bus.getId() == null) {
-			throw new LogicException("Debe ingresar el identificador del bus");
-		}
+//		if (bus.getId() == null) {
+//			throw new LogicException("Debe ingresar el identificador del bus");
+//		}
 
 		// Se valida que se ingrese una placa
 		if (bus.getPlaca() == null || bus.getPlaca().trim().equals("")) {
@@ -142,8 +142,8 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 			throw new LogicException("Debe ingresar un tipo de bus");
 		}
 		// Se valida que el tipo ingresado corresponda a P, A o T
-		if (bus.getTipo().length() != 1 || !bus.getTipo().equals("P") || !bus.getTipo().equals("A")
-				|| !bus.getTipo().equals("T")) {
+		if (!bus.getTipo().equals("P") && !bus.getTipo().equals("A")
+				&& !bus.getTipo().equals("T")) {
 			throw new LogicException("El tipo de bus debe ser 'P', 'A' o 'T'");
 		}
 
@@ -157,10 +157,10 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 
 		// Se valida que el bus exista en la base de datos
-		Tmio1Bus b = ib.findById(em, bus.getId());
-		if (b == null) {
-			throw new LogicException("El bus cono id: " + bus.getId() + " no existe");
-		}
+//		Tmio1Bus b = ib.findById(em, bus.getId());
+//		if (b == null) {
+//			throw new LogicException("El bus cono id: " + bus.getId() + " no existe");
+//		}
 
 		ib.update(em, bus);
 
@@ -181,10 +181,10 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 		
 		// Se valida que el bus exista en la base de datos
-		Tmio1Bus b = ib.findById(em, bus.getId());
-		if (b == null) {
-			throw new LogicException("El bus con id: " + bus.getId() + " no existe");
-		}
+//		Tmio1Bus b = ib.findById(em, bus.getId());
+//		if (b == null) {
+//			throw new LogicException("El bus con id: " + bus.getId() + " no existe");
+//		}
 		
 		ib.delete(em, bus);
 
@@ -265,9 +265,9 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		}
 		
 		// Se valida que el identificador no sea menor a 0
-		if (id < 0) {
-			throw new LogicException("El identificador no puede ser menor a cero");
-		}
+//		if (id < 0) {
+//			throw new LogicException("El identificador no puede ser menor a cero");
+//		}
 		
 		// Se valida que exista bus con el identificador pasado por parámetro
 		Tmio1Bus b = ib.findById(em, id);

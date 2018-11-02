@@ -47,7 +47,8 @@ public class Tmio1_Buses_DAO implements ITmio1_Buses_DAO{
 
 	@Override
 	public void delete(EntityManager em, Tmio1Bus bus) {
-		em.remove(bus);
+		em.remove(em.contains(bus) ? bus : em.merge(bus));
+//		em.remove(bus);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -42,8 +43,8 @@ public class TestConductorLogic {
 		
 		conductor.setApellidos("Quintero");
 		conductor.setCedula("1107542316");
-		conductor.setFechaContratacion(new Date());
-		conductor.setFechaNacimiento(new Date(2000, 1, 1));
+		conductor.setFechaContratacion(new GregorianCalendar(2018, 8, 10).getTime());
+		conductor.setFechaNacimiento(new GregorianCalendar(2000, 1, 1).getTime());
 		conductor.setNombre("Daniel");
 		conductor.setTmio1Servicios(new ArrayList<Tmio1Servicio>());
 		conductor.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
@@ -53,10 +54,10 @@ public class TestConductorLogic {
 			
 			logger.info("Se creó el conductor satisfactoriamente");
 			
-			logger.info("");
-			logger.info("");
-			logger.info("");
-			logger.info("");
+			logger.info("Nombre: "+conductor.getNombre());
+			logger.info("Apellido: "+conductor.getApellidos());
+			logger.info("Cédula: "+conductor.getCedula());
+			logger.info("Fecha de contratación: "+conductor.getFechaContratacion());
 			logger.info("");
 		} catch (LogicException e) {
 			logger.error(e.getMessage());
@@ -67,26 +68,34 @@ public class TestConductorLogic {
 	@Test
 	public void testModificarConductor() {
 		
-		Tmio1Conductore conductor = new Tmio1Conductore();
-		
-		conductor.setApellidos("Quintero");
-		conductor.setCedula("1107542316");
-		conductor.setFechaContratacion(new Date());
-		conductor.setFechaNacimiento(new Date());
-		conductor.setNombre("Daniel");
-		conductor.setTmio1Servicios(new ArrayList<Tmio1Servicio>());
-		conductor.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
-		
 		try {
-			conductorLogic.create(conductor);
+			Tmio1Conductore conductor = conductorLogic.findByCedula("1107542316");
 			
-			logger.info("Se creó el conductor satisfactoriamente");
+			conductor.setFechaContratacion(new GregorianCalendar(2018, 8, 12).getTime());
 			
-			logger.info("");
-			logger.info("");
-			logger.info("");
-			logger.info("");
-			logger.info("");
+			conductorLogic.update(conductor);
+			
+			logger.info("El conductor con cédula " + conductor.getCedula()+" se modificó correctamente");
+			
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+	
+	}
+	
+	@Test
+	public void testEliminarConductor() {
+		
+		Tmio1Conductore conductor;
+		try {
+			conductor = conductorLogic.findByCedula("1107542316");
+						
+			conductorLogic.delete(conductor);
+			
+			logger.info("El conductor con cédula " + conductor.getCedula()+" se eliminó correctamente");
+			
+			
+			
 		} catch (LogicException e) {
 			logger.error(e.getMessage());
 		}
