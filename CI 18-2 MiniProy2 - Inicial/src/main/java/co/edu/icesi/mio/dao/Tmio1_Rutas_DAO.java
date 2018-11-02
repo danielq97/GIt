@@ -34,7 +34,8 @@ public class Tmio1_Rutas_DAO implements ITmio1_Rutas_DAO{
 
 	@Override
 	public void delete(EntityManager em, Tmio1Ruta ruta) {
-		em.remove(ruta);
+		em.remove(em.contains(ruta) ? ruta : em.merge(ruta));
+//		em.remove(ruta);
 	}
 
 	@Override

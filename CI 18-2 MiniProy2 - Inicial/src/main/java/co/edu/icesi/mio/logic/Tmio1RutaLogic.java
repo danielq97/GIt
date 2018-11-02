@@ -188,7 +188,7 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 			throw new LogicException("Debe indicar si la ruta se encuentra activa o no");
 		}
 		// Se valida que se ingrese S o N para saber si la ruta está operando
-		if (ruta.getActiva().length() != 1 || !ruta.getActiva().equals("S") || !ruta.getActiva().equals("N")) {
+		if (!ruta.getActiva().equals("S") && !ruta.getActiva().equals("N")) {
 			throw new LogicException("Sólo puede indicar con 'S' o 'N' si la ruta está activa o no");
 		}
 		
@@ -215,10 +215,10 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 		if (ruta.getId() == null) {
 			throw new LogicException("La ruta debe tener un id");
 		}
-		// Se valida que el id no sea menor a 0
-		if (ruta.getId() < 0) {
-			throw new LogicException("El id de la ruta no puede ser menor a 0");
-		}
+//		// Se valida que el id no sea menor a 0
+//		if (ruta.getId() < 0) {
+//			throw new LogicException("El id de la ruta no puede ser menor a 0");
+//		}
 		
 		// Se valida que la ruta exista en la base de datos
 		Tmio1Ruta r = ir.findById(em, ruta.getId());
@@ -271,10 +271,10 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 		if (id == null) {
 			throw new LogicException("Debe ingresar el id de una ruta");
 		}
-		// Se valida que el id ingresado no sea menor a 0
-		if (id < 0) {
-			throw new LogicException("El id de la ruta no puede ser 0");
-		}
+//		// Se valida que el id ingresado no sea menor a 0
+//		if (id < 0) {
+//			throw new LogicException("El id de la ruta no puede ser 0");
+//		}
 		
 		// Se valida que la ruta exista en la base de datos
 		Tmio1Ruta r = ir.findById(em, id);

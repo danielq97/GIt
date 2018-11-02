@@ -72,8 +72,8 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 			throw new LogicException("Debe ingresar un tipo de bus");
 		}
 		// Se valida que el tipo ingresado corresponda a P, A o T
-		if (bus.getTipo().length() != 1 || !bus.getTipo().equals("P") || !bus.getTipo().equals("A")
-				|| !bus.getTipo().equals("T")) {
+		if (!bus.getTipo().equals("P") && !bus.getTipo().equals("A")
+				&& !bus.getTipo().equals("T")) {
 			throw new LogicException("El tipo de bus debe ser 'P', 'A' o 'T'");
 		}
 

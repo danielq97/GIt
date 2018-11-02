@@ -37,7 +37,6 @@ public class TestRutaLogic {
 		assertNotNull(rutalogic);
 
 		Tmio1Ruta truta = new Tmio1Ruta();
-		
 		 
 			truta.setActiva("S");
 			truta.setDescripcion("Por la pasoancho");
@@ -50,19 +49,66 @@ public class TestRutaLogic {
 			
 			truta.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
 			truta.setTmio1SitiosRutas1(new ArrayList<Tmio1SitiosRuta>());
-			
-
-	
 
 		try {
 			rutalogic.create(truta);
-		} catch (LogicException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			
+			logger.info("La ruta se creó satisfactoriamente");
+			
+			logger.info("Id de ruta: "+truta.getId());
+			logger.info("Número de Ruta: "+truta.getNumero());
+			logger.info("Día de inicio: "+truta.getDiaInicio());
+			logger.info("Día de finalización: "+truta.getDiaFin());
+			logger.info("Se encuentra activa: "+truta.getActiva());
+			
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+
+	}
+	
+	@Test
+	public void testModificarRuta() {
+
+		assertNotNull(rutalogic);
+
+		try {
+			Tmio1Ruta truta = rutalogic.findById(-40);
+			
+			truta.setDiaFin(new BigDecimal(5));
+			
+			rutalogic.update(truta);
+			
+			logger.info("La ruta se modificó satisfactoriamente");
+			
+			logger.info("Id de ruta: "+truta.getId());
+			logger.info("Número de Ruta: "+truta.getNumero());
+			logger.info("Día de inicio: "+truta.getDiaInicio());
+			logger.info("Día de finalización: "+truta.getDiaFin());
+			logger.info("Se encuentra activa: "+truta.getActiva());
+			
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
 		}
 
 	}
 
+	@Test
+	public void testEliminarRuta() {
 
+		assertNotNull(rutalogic);
+
+		try {
+			Tmio1Ruta truta = rutalogic.findById(-40);
+						
+			rutalogic.delete(truta);
+			
+			logger.info("La ruta se eliminó satisfactoriamente");
+			
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+
+	}
+	
 }
