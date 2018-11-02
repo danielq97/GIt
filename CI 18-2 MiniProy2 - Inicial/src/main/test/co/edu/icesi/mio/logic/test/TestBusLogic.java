@@ -52,8 +52,6 @@ public class TestBusLogic {
 	@Test
 	public void testModificarBus() {
 
-		assertNotNull(buslogic);
-
 		Tmio1Bus tbus;
 		try {
 			tbus = buslogic.findById(-44);

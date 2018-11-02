@@ -43,7 +43,7 @@ public class TestConductorLogic {
 		conductor.setApellidos("Quintero");
 		conductor.setCedula("1107542316");
 		conductor.setFechaContratacion(new Date());
-		conductor.setFechaNacimiento(new Date());
+		conductor.setFechaNacimiento(new Date(2000, 1, 1));
 		conductor.setNombre("Daniel");
 		conductor.setTmio1Servicios(new ArrayList<Tmio1Servicio>());
 		conductor.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
