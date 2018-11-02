@@ -29,7 +29,7 @@ import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
 //@Rollback(false)
 public class TestConductorLogic {
 	
-	private static Logger logger = LoggerFactory.getLogger(TestRutaLogic.class);
+	private static Logger logger = LoggerFactory.getLogger(TestConductorLogic.class);
 
 	@Autowired
 	private ITmio1ConductoreLogic conductorLogic;
@@ -86,9 +86,8 @@ public class TestConductorLogic {
 	@Test
 	public void testEliminarConductor() {
 		
-		Tmio1Conductore conductor;
 		try {
-			conductor = conductorLogic.findByCedula("1107542316");
+			Tmio1Conductore conductor = conductorLogic.findByCedula("1107542316");
 						
 			conductorLogic.delete(conductor);
 			
@@ -100,6 +99,27 @@ public class TestConductorLogic {
 			logger.error(e.getMessage());
 		}
 	
+	}
+	
+	@Test
+	public void testFindByName() {
+		
+		try {
+			List<Tmio1Conductore> conductor = conductorLogic.findByName("Daniel");
+			
+			logger.info("Lista: ");
+			
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+	
+	}
+	
+	public void printList (List lista) {
+		for (Object object : lista) {
+			logger.info("Lista");
+			logger.info(object.toString());
+		}
 	}
 
 }

@@ -1,9 +1,6 @@
 package co.edu.icesi.mio.logic.test;
 
-import static org.junit.Assert.*;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
