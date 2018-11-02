@@ -73,7 +73,7 @@ public class TestRutaLogic {
 		assertNotNull(rutalogic);
 
 		try {
-			Tmio1Ruta truta = rutalogic.findById(-40);
+			Tmio1Ruta truta = rutalogic.findById(-39);
 			
 			truta.setDiaFin(new BigDecimal(5));
 			
@@ -99,7 +99,7 @@ public class TestRutaLogic {
 		assertNotNull(rutalogic);
 
 		try {
-			Tmio1Ruta truta = rutalogic.findById(-40);
+			Tmio1Ruta truta = rutalogic.findById(-39);
 						
 			rutalogic.delete(truta);
 			
