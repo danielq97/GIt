@@ -100,7 +100,7 @@ public class Tmio1RutaLogic implements ITmio1RutaLogic {
 			throw new LogicException("Debe indicar si la ruta se encuentra activa o no");
 		}
 		// Se valida que se ingrese S o N para saber si la ruta está operando
-		if (ruta.getActiva().length() != 1 || !ruta.getActiva().equals("S") || !ruta.getActiva().equals("N")) {
+		if (!ruta.getActiva().equals("S") && !ruta.getActiva().equals("N")) {
 			throw new LogicException("Sólo puede indicar con 'S' o 'N' si la ruta está activa o no");
 		}
 		

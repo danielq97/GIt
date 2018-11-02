@@ -1,4 +1,4 @@
-package co.edu.icesi.mio.testlogic;
+package co.edu.icesi.mio.logic.test;
 
 import static org.junit.Assert.*;
 
@@ -40,8 +40,8 @@ public class TestRutaLogic {
 		 
 			truta.setActiva("S");
 			truta.setDescripcion("Por la pasoancho");
-			truta.setDiaFin(new BigDecimal(20));
-			truta.setDiaInicio(new BigDecimal(30));
+			truta.setDiaFin(new BigDecimal(4));
+			truta.setDiaInicio(new BigDecimal(2));
 			truta.setHoraFin(new BigDecimal(12));
 			truta.setHoraInicio(new BigDecimal(10));
 			truta.setNumero("201");

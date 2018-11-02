@@ -1,4 +1,4 @@
-package co.edu.icesi.mio.testlogic;
+package co.edu.icesi.mio.logic.test;
 
 import static org.junit.Assert.*;
 
