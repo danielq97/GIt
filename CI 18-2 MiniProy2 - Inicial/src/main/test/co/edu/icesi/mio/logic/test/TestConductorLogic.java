@@ -58,7 +58,6 @@ public class TestConductorLogic {
 			logger.info("Apellido: "+conductor.getApellidos());
 			logger.info("Cédula: "+conductor.getCedula());
 			logger.info("Fecha de contratación: "+conductor.getFechaContratacion());
-			logger.info("");
 		} catch (LogicException e) {
 			logger.error(e.getMessage());
 		}
@@ -105,9 +104,43 @@ public class TestConductorLogic {
 	public void testFindByName() {
 		
 		try {
-			List<Tmio1Conductore> conductor = conductorLogic.findByName("Daniel");
+			List<Tmio1Conductore> lConductores = conductorLogic.findByName("Daniel");
 			
 			logger.info("Lista: ");
+			
+			printList(lConductores);
+			
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+	
+	}
+	
+	@Test
+	public void testFindByLastName() {
+		
+		try {
+			List<Tmio1Conductore> lConductores = conductorLogic.findByLastName("Quintero");
+			
+			logger.info("Lista: ");
+			
+			printList(lConductores);
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+	
+	}
+	
+	@Test
+	public void testFindByCedula() {
+		
+		try {
+			Tmio1Conductore conductor = conductorLogic.findByCedula("1107542316");
+			
+			logger.info("Nombre: "+conductor.getNombre());
+			logger.info("Apellido: "+conductor.getApellidos());
+			logger.info("Cédula: "+conductor.getCedula());
+			logger.info("Fecha de contratación: "+conductor.getFechaContratacion());
 			
 		} catch (LogicException e) {
 			logger.error(e.getMessage());
