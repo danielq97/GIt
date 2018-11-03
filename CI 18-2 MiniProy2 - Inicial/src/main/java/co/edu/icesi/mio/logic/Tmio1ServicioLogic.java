@@ -124,6 +124,15 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 
 	}
 
+	// No tiene sentido esta funcionalidad para la entidad pasada como parámetro, ya
+	// que como todas sus caracteristicas hacen parte de la clave foranea que sirve
+	// para reconocer esta entidad, si yo llego a cambiar uno de sus atributos el
+	// servicio ya no es el mismo, por lo tanto cuando yo voy a validar que el
+	// servicio exista en la base de datos y "verificar" que se está cambiando, el
+	// método que me retorna el objeto llega vacío ya que no es el mismo. Entonces
+	// para manejar un "update" o mas bien
+	// para manejar un servicio similar se debe crear un nuevo objeto de esta
+	// entidad y eliminar el objeto viejo que es similar
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void update(Tmio1Servicio servicio) throws LogicException {
@@ -167,7 +176,7 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		rutaLogic.findById(servicio.getTmio1Ruta().getId());
 		// Se valida que el id de la ruta asociada coincida con el id de ruta de la
 		// clave foranea
-		if (servicio.getTmio1Ruta().getId() == kF.getIdRuta()) {
+		if (servicio.getTmio1Ruta().getId() != kF.getIdRuta()) {
 			throw new LogicException("El id de la ruta asociada no coincide con el id de ruta de la clave foranea");
 		}
 
@@ -203,10 +212,10 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		}
 
 		// Se valida que el servicio exista en la base de datos
-		Tmio1Servicio s = is.findById(em, servicio.getId());
-		if (s == null) {
-			throw new LogicException("El servicio no existe");
-		}
+//		Tmio1Servicio s = is.findById(em, servicio.getId());
+//		if (s == null) {
+//			throw new LogicException("El servicio no existe");
+//		}
 
 		is.update(em, servicio);
 
@@ -255,7 +264,7 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		rutaLogic.findById(servicio.getTmio1Ruta().getId());
 		// Se valida que el id de la ruta asociada coincida con el id de ruta de la
 		// clave foranea
-		if (servicio.getTmio1Ruta().getId() == kF.getIdRuta()) {
+		if (servicio.getTmio1Ruta().getId() != kF.getIdRuta()) {
 			throw new LogicException("El id de la ruta asociada no coincide con el id de ruta de la clave foranea");
 		}
 
@@ -300,4 +309,22 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		return lS;
 	}
 
+	@Override
+	public Tmio1Servicio findById(Tmio1ServicioPK id) throws LogicException {
+
+		// Se valida que se ingrese una clave foranea
+		if (id == null) {
+			throw new LogicException("Debe ingresar una clave foranea");
+		}
+
+		// Se valida que exista un servicio con la clave foranea pasada por parámetro
+		Tmio1Servicio servicio = is.findById(em, id);
+		if (servicio == null) {
+			throw new LogicException("El servicio asociado a: \nun conductor con cédula: " + id.getCedulaConductor()
+					+ "\nruta con id: " + id.getIdRuta() + "\nbus con id: " + id.getIdBus()
+					+ "\n\n con fechas: \nInicio: " + id.getFechaInicio().toString() + "\nFin: " + id.getFechaFin());
+		}
+
+		return servicio;
+	}
 }

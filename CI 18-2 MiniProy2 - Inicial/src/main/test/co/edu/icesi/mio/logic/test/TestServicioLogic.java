@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -25,7 +26,7 @@ import co.edu.icesi.mio.model.Tmio1ServicioPK;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
-// @Rollback(false)
+@Rollback(false)
 public class TestServicioLogic {
 
 	private static Logger logger = LoggerFactory.getLogger(TestRutaLogic.class);
@@ -54,7 +55,7 @@ public class TestServicioLogic {
 
 		try {
 			// BUscar un bus para insertar
-			servicio.setTmio1Bus(buslogic.findById(1));
+			servicio.setTmio1Bus(buslogic.findById(-43));
 			// Buscar un conductor
 			servicio.setTmio1Conductore(conductoreslogic.findByCedula("1107542311"));
 			// Buscar una ruta
@@ -62,7 +63,7 @@ public class TestServicioLogic {
 
 			Tmio1ServicioPK pk = new Tmio1ServicioPK();
 			pk.setCedulaConductor("1107542311");
-			pk.setIdBus(1);
+			pk.setIdBus(-43);
 			pk.setIdRuta(-37);
 			pk.setFechaInicio(new GregorianCalendar(2018, 8, 10).getTime());
 			pk.setFechaFin(new GregorianCalendar(2018, 8, 24).getTime());
@@ -70,7 +71,7 @@ public class TestServicioLogic {
 			servicio.setId(pk);
 
 			servicioLogic.create(servicio);
-			logger.info("Se creï¿½ el conductor satisfactoriamente");
+			logger.info("Se creó el servicio satisfactoriamente");
 
 			logger.info("Id: " + servicio.getId());
 			logger.info("Marca bus: " + servicio.getTmio1Bus().getMarca());
@@ -83,5 +84,61 @@ public class TestServicioLogic {
 		}
 
 	}
+	
+	@Test
+	public void testModificarServicio() {
+		
+		Tmio1ServicioPK pk = new Tmio1ServicioPK();
+		pk.setCedulaConductor("1107598456");
+		pk.setIdBus(-43);
+		pk.setIdRuta(-37);
+		pk.setFechaInicio(new GregorianCalendar(2018, 8, 2).getTime());
+		pk.setFechaFin(new GregorianCalendar(2018, 8, 3).getTime());
+		
+
+
+		try {
+			Tmio1Servicio servicio = servicioLogic.findById(pk);
+			servicioLogic.delete(servicio);
+			
+			servicio.getId().setCedulaConductor("1107542311");
+			servicio.setTmio1Conductore(conductoreslogic.findByCedula("1107542311"));
+
+			servicioLogic.update(servicio);
+			logger.info("Se actualizó el conductor satisfactoriamente");
+
+			logger.info("Id: " + servicio.getId());
+			logger.info("Marca bus: " + servicio.getTmio1Bus().getMarca());
+			logger.info("Nombre conductor: " + servicio.getTmio1Conductore().getNombre());
+			logger.info("Numero ruta: " + servicio.getTmio1Ruta().getNumero());
+
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+
+	}
+
+	@Test
+	public void testEliminarServicio() {
+		
+		Tmio1ServicioPK pk = new Tmio1ServicioPK();
+		pk.setCedulaConductor("1107542311");
+		pk.setIdBus(-43);
+		pk.setIdRuta(-37);
+		pk.setFechaInicio(new GregorianCalendar(2018, 8, 10).getTime());
+		pk.setFechaFin(new GregorianCalendar(2018, 8, 24).getTime());
+
+		try {
+			Tmio1Servicio servicio = servicioLogic.findById(pk);
+			servicioLogic.delete(servicio);
+			
+			logger.info("Se eliminó el bus satisfactoriamente");
+
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+
+	}
+
 
 }

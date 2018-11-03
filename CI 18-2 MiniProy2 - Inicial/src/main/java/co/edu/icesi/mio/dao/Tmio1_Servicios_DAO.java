@@ -50,7 +50,8 @@ public class Tmio1_Servicios_DAO implements ITmio1_Servicios_DAO{
 
 	@Override
 	public void delete(EntityManager em, Tmio1Servicio servicio) {
-		em.remove(servicio);
+		em.remove(em.contains(servicio) ? servicio : em.merge(servicio));
+//		em.remove(servicio);
 	}
 
 	@Override

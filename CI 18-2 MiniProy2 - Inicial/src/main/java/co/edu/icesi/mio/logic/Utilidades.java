@@ -53,19 +53,20 @@ public class Utilidades {
 
 	// Valida si una fecha de contratación es antes a la fecha actual de ejecutar el
 	// método, verifica si es intancia SQL
-	
+
 	public static boolean validateFechaContrato(Date fechaContratacion) {
-		if(fechaContratacion instanceof java.sql.Date) {
+		if (fechaContratacion instanceof java.sql.Date) {
 			LocalDate ahora = LocalDate.now();
 			LocalDate sqllocalDate = ((java.sql.Date) fechaContratacion).toLocalDate();
-		  return sqllocalDate.isBefore(ahora);}
-		
+			return sqllocalDate.isBefore(ahora);
+		}
+
 		else {
 			LocalDate ahora = LocalDate.now();
 			LocalDate contrato = fechaContratacion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			return contrato.isBefore(ahora);}
+			return contrato.isBefore(ahora);
 		}
-	
+	}
 
 	// Valida si una fecha es antes de otra fecha
 	public static boolean dateBeforeDateOrEqual(Date ini, Date fin) {
@@ -97,13 +98,19 @@ public class Utilidades {
 					.atZone(ZoneId.systemDefault()).toLocalDate();
 			LocalDate finServicioBus = serviciosBus.get(i).getId().getFechaFin().toInstant()
 					.atZone(ZoneId.systemDefault()).toLocalDate();
-			if (iniServicio.isEqual(iniServicioBus) || iniServicio.isEqual(finServicioBus)
-					|| finServicio.isEqual(iniServicioBus) || finServicio.isEqual(finServicioBus)) {
-				disponible = false;
-			} else if (iniServicio.isAfter(iniServicioBus) && iniServicio.isBefore(finServicioBus)) {
-				disponible = false;
-			} else if (finServicio.isAfter(iniServicioBus) && finServicio.isBefore(finServicioBus)) {
-				disponible = false;
+			if (!serviciosBus.get(i).getId().equals(servicio.getId())) {
+
+				if (iniServicio.isEqual(iniServicioBus) || iniServicio.isEqual(finServicioBus)
+						|| finServicio.isEqual(iniServicioBus) || finServicio.isEqual(finServicioBus)) {
+					disponible = false;
+				} else if (iniServicio.isAfter(iniServicioBus) && iniServicio.isBefore(finServicioBus)) {
+					disponible = false;
+				} else if (finServicio.isAfter(iniServicioBus) && finServicio.isBefore(finServicioBus)) {
+					disponible = false;
+				}
+
+			}else {
+				break;
 			}
 		}
 		return disponible;
@@ -124,13 +131,17 @@ public class Utilidades {
 					.atZone(ZoneId.systemDefault()).toLocalDate();
 			LocalDate finServicioCon = serviciosCon.get(i).getId().getFechaFin().toInstant()
 					.atZone(ZoneId.systemDefault()).toLocalDate();
-			if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
-					|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
-				disponible = false;
-			} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
-				disponible = false;
-			} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
-				disponible = false;
+			if (!serviciosCon.get(i).getId().equals(servicio.getId())) {
+				if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
+						|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
+					disponible = false;
+				} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
+					disponible = false;
+				} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
+					disponible = false;
+				}
+			} else {
+				break;
 			}
 		}
 		return disponible;
