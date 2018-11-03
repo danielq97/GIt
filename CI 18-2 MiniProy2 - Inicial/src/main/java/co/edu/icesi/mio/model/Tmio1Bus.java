@@ -133,5 +133,15 @@ public class Tmio1Bus implements Serializable {
 
 		return tmio1ServiciosSitio;
 	}
+	
+	@Override
+	public String toString() {
+		return "Id: "+getId()+"\n"+
+				"Capacidad: "+getCapacidad()+"\n"+
+				"Marca: "+getMarca()+"\n"+
+				"Modelo: "+getModelo()+"\n"+
+				"Placa: "+getPlaca()+"\n"+
+				"Tipo: "+getTipo();
+	}
 
 }

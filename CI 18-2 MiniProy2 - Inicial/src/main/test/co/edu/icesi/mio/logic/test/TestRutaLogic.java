@@ -38,13 +38,13 @@ public class TestRutaLogic {
 
 		Tmio1Ruta truta = new Tmio1Ruta();
 		 
-			truta.setActiva("S");
-			truta.setDescripcion("Por la pasoancho");
-			truta.setDiaFin(new BigDecimal(4));
-			truta.setDiaInicio(new BigDecimal(2));
-			truta.setHoraFin(new BigDecimal(12));
-			truta.setHoraInicio(new BigDecimal(10));
-			truta.setNumero("201");
+			truta.setActiva("N");
+			truta.setDescripcion("Por las tres cruces");
+			truta.setDiaFin(new BigDecimal(2));
+			truta.setDiaInicio(new BigDecimal(1));
+			truta.setHoraFin(new BigDecimal(22));
+			truta.setHoraInicio(new BigDecimal(9));
+			truta.setNumero("430");
 			truta.setTmio1Servicios(new ArrayList<Tmio1Servicio>());
 			
 			truta.setTmio1ServiciosSitios(new ArrayList<Tmio1ServiciosSitio>());
@@ -95,6 +95,24 @@ public class TestRutaLogic {
 
 	@Test
 	public void testEliminarRuta() {
+
+		assertNotNull(rutalogic);
+
+		try {
+			Tmio1Ruta truta = rutalogic.findById(-39);
+						
+			rutalogic.delete(truta);
+			
+			logger.info("La ruta se eliminó satisfactoriamente");
+			
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+
+	}
+	
+	@Test
+	public void test() {
 
 		assertNotNull(rutalogic);
 

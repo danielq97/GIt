@@ -42,7 +42,7 @@ public class TestConductorLogic {
 		Tmio1Conductore conductor = new Tmio1Conductore();
 		
 		conductor.setApellidos("Quintero");
-		conductor.setCedula("1107542316");
+		conductor.setCedula("1107598456");
 		conductor.setFechaContratacion(new GregorianCalendar(2018, 8, 10).getTime());
 		conductor.setFechaNacimiento(new GregorianCalendar(2000, 1, 1).getTime());
 		conductor.setNombre("Daniel");
@@ -68,9 +68,9 @@ public class TestConductorLogic {
 	public void testModificarConductor() {
 		
 		try {
-			Tmio1Conductore conductor = conductorLogic.findByCedula("1107542316");
+			Tmio1Conductore conductor = conductorLogic.findByCedula("1107542311");
 			
-			conductor.setFechaContratacion(new GregorianCalendar(2018, 8, 12).getTime());
+			conductor.setFechaContratacion(new GregorianCalendar(2018, 8, 10).getTime());
 			
 			conductorLogic.update(conductor);
 			

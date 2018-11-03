@@ -175,11 +175,11 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 			throw new LogicException("Debe ingresar un bus");
 		}
 		
-		// Se valida que el bus posea un identificador
-		if (bus.getId() == null) {
-			throw new LogicException("El bus debe tener un identificador definido");
-		}
-		
+//		// Se valida que el bus posea un identificador
+//		if (bus.getId() == null) {
+//			throw new LogicException("El bus debe tener un identificador definido");
+//		}
+//		
 		// Se valida que el bus exista en la base de datos
 //		Tmio1Bus b = ib.findById(em, bus.getId());
 //		if (b == null) {
@@ -221,7 +221,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 			throw new LogicException("Debe ingresar un tipo de bus");
 		}
 		// Se valida que el tipo de bus sea de tipo 'P', 'A' o 'T'
-		if (type.length() != 1 || !type.equals("P") || !type.equals("A") || !type.equals("T")) {
+		if (!type.equals("P") && !type.equals("A") && !type.equals("T")) {
 			throw new LogicException("Debe ingresar un tipo de bus 'P', 'A' o 'T'");
 		}
 		
