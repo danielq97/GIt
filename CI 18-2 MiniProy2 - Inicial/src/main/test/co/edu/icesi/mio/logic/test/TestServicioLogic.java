@@ -54,7 +54,7 @@ public class TestServicioLogic {
 
 		try {
 			// BUscar un bus para insertar
-			servicio.setTmio1Bus(buslogic.findById(-43));
+			servicio.setTmio1Bus(buslogic.findById(1));
 			// Buscar un conductor
 			servicio.setTmio1Conductore(conductoreslogic.findByCedula("1107542311"));
 			// Buscar una ruta
@@ -62,7 +62,7 @@ public class TestServicioLogic {
 
 			Tmio1ServicioPK pk = new Tmio1ServicioPK();
 			pk.setCedulaConductor("1107542311");
-			pk.setIdBus(-43);
+			pk.setIdBus(1);
 			pk.setIdRuta(-37);
 			pk.setFechaInicio(new GregorianCalendar(2018, 8, 10).getTime());
 			pk.setFechaFin(new GregorianCalendar(2018, 8, 24).getTime());

@@ -68,11 +68,12 @@ public class TestConductorLogic {
 	public void testModificarConductor() {
 		
 		try {
-			Tmio1Conductore conductor = conductorLogic.findByCedula("1107542311");
+			Tmio1Conductore conductor = conductorLogic.findByCedula("1107598456");
 			
-			conductor.setFechaContratacion(new GregorianCalendar(2018, 8, 10).getTime());
-			
+			conductor.setFechaContratacion(new GregorianCalendar(2018, 10, 21).getTime());
+			conductor.setApellidos("Asprilla");
 			conductorLogic.update(conductor);
+			
 			
 			logger.info("El conductor con cédula " + conductor.getCedula()+" se modificó correctamente");
 			

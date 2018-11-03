@@ -27,25 +27,45 @@ public class Utilidades {
 		return resultado;
 	}
 
-	// Valida si una persona tiene la mayoría de edad
+	// Valida si una persona tiene la mayoría de edad, valida si es fecha SQL o
+	// java.util, para que no presente problemas
 	public static boolean isLegalAge(Date fechaNacimiento) {
-		LocalDate nFechaNacimiento = fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		LocalDate ahora = LocalDate.now();
-		Period periodo = Period.between(nFechaNacimiento, ahora);
-		boolean resultado = true;
-		if (periodo.getYears() < 18) {
-			resultado = false;
+		if (fechaNacimiento instanceof java.sql.Date) {
+			LocalDate sqllocalDate = ((java.sql.Date) fechaNacimiento).toLocalDate();
+			LocalDate ahora = LocalDate.now();
+			Period periodo = Period.between(sqllocalDate, ahora);
+			boolean resultado = true;
+			if (periodo.getYears() < 18) {
+				resultado = false;
+			}
+			return resultado;
+		} else {
+			LocalDate nFechaNacimiento = fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			LocalDate ahora = LocalDate.now();
+			Period periodo = Period.between(nFechaNacimiento, ahora);
+			boolean resultado = true;
+			if (periodo.getYears() < 18) {
+				resultado = false;
+			}
+			return resultado;
 		}
-		return resultado;
 	}
 
 	// Valida si una fecha de contratación es antes a la fecha actual de ejecutar el
-	// método
+	// método, verifica si es intancia SQL
+	
 	public static boolean validateFechaContrato(Date fechaContratacion) {
-		LocalDate ahora = LocalDate.now();
-		LocalDate contrato = fechaContratacion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		return contrato.isBefore(ahora);
-	}
+		if(fechaContratacion instanceof java.sql.Date) {
+			LocalDate ahora = LocalDate.now();
+			LocalDate sqllocalDate = ((java.sql.Date) fechaContratacion).toLocalDate();
+		  return sqllocalDate.isBefore(ahora);}
+		
+		else {
+			LocalDate ahora = LocalDate.now();
+			LocalDate contrato = fechaContratacion.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			return contrato.isBefore(ahora);}
+		}
+	
 
 	// Valida si una fecha es antes de otra fecha
 	public static boolean dateBeforeDateOrEqual(Date ini, Date fin) {
@@ -88,8 +108,9 @@ public class Utilidades {
 		}
 		return disponible;
 	}
-	
-	// Valida si el conductor pasado por parámetro está disponible para el servicio pasado
+
+	// Valida si el conductor pasado por parámetro está disponible para el servicio
+	// pasado
 	// por parámetro
 	public static boolean isConductorAvailable(Tmio1Conductore con, Tmio1Servicio servicio) {
 		boolean disponible = true;
@@ -114,12 +135,12 @@ public class Utilidades {
 		}
 		return disponible;
 	}
-	
+
 	// Convierte una fecha tipo Date a una fecha tipo Calendar
-	public static Calendar toCalendar(Date date){ 
-		  Calendar cal = Calendar.getInstance();
-		  cal.setTime(date);
-		  return cal;
-		}
+	public static Calendar toCalendar(Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal;
+	}
 
 }
