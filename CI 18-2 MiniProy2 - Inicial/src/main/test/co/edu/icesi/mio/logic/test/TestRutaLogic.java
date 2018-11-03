@@ -129,7 +129,6 @@ public class TestRutaLogic {
 	}
 	
 	public void printList(List lista) {
-		logger.info("Lista");
 		for (Object object : lista) {
 			logger.info(object.toString() + "\n");
 		}
