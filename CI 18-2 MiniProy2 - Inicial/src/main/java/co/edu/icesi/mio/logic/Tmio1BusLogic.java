@@ -272,7 +272,7 @@ public class Tmio1BusLogic implements ITmio1BusLogic {
 		// Se valida que exista bus con el identificador pasado por parámetro
 		Tmio1Bus b = ib.findById(em, id);
 		if (b == null) {
-			throw new LogicException("El bus con identificador: "+id + "no existe");
+			throw new LogicException("El bus con identificador: "+id + " no existe");
 		}
 		
 		return b;

@@ -51,7 +51,7 @@ public class Utilidades {
 	public static boolean dateBeforeDateOrEqual(Date ini, Date fin) {
 		LocalDate dIni = ini.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 		LocalDate dFin = fin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-		return dIni.isBefore(dFin) && dIni.isEqual(dFin);
+		return dIni.isBefore(dFin) || dIni.isEqual(dFin);
 	}
 
 	// Valida si un número se encuentra entre otros dos números

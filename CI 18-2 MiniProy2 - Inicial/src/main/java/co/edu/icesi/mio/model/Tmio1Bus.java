@@ -32,7 +32,7 @@ public class Tmio1Bus implements Serializable {
 	private String tipo;
 
 	//bi-directional many-to-one association to Tmio1Servicio
-	@OneToMany(mappedBy="tmio1Bus")
+	@OneToMany(mappedBy="tmio1Bus", fetch=FetchType.EAGER)
 	private List<Tmio1Servicio> tmio1Servicios;
 
 	//bi-directional many-to-one association to Tmio1ServiciosSitio
