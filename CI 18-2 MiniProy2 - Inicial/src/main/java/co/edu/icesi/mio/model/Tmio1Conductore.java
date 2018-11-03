@@ -125,5 +125,13 @@ public class Tmio1Conductore implements Serializable {
 
 		return tmio1ServiciosSitio;
 	}
+	
+	@Override
+	public String toString() {
+		return "Cédula: "+getCedula()+"\n"+
+				"Nombre: "+getNombre()+"\n"+
+				"Apellido: "+getApellidos()+"\n"+
+				"Fecha de Contratación: "+getFechaContratacion();
+	}
 
 }

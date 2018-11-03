@@ -108,7 +108,7 @@ public class TestConductorLogic {
 		try {
 			List<Tmio1Conductore> lConductores = conductorLogic.findByName("Daniel");
 			
-			logger.info("Lista: ");
+			logger.info("Los conductores que tiene como nombre Daniel son los siguientes:");
 			
 			printList(lConductores);
 			
@@ -124,7 +124,7 @@ public class TestConductorLogic {
 		try {
 			List<Tmio1Conductore> lConductores = conductorLogic.findByLastName("Quintero");
 			
-			logger.info("Lista: ");
+			logger.info("Los conductores que tiene apellido Quintero son los siguientes:");
 			
 			printList(lConductores);
 		} catch (LogicException e) {
@@ -137,7 +137,7 @@ public class TestConductorLogic {
 	public void testFindByCedula() {
 		
 		try {
-			Tmio1Conductore conductor = conductorLogic.findByCedula("1107542316");
+			Tmio1Conductore conductor = conductorLogic.findByCedula("1107598456");
 			
 			logger.info("Nombre: "+conductor.getNombre());
 			logger.info("Apellido: "+conductor.getApellidos());
@@ -152,7 +152,6 @@ public class TestConductorLogic {
 	
 	public void printList (List lista) {
 		for (Object object : lista) {
-			logger.info("Lista");
 			logger.info(object.toString());
 		}
 	}
