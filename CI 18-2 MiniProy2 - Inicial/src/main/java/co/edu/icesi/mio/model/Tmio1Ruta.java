@@ -209,5 +209,17 @@ public class Tmio1Ruta implements Serializable {
 
 		//return tmio1SitiosRutas2;
 	//}
+	
+	@Override
+	public String toString() {
+		return "Id: "+getId()+"\n"+
+				"Activa: "+getActiva()+"\n"+
+				"Descripción: "+getDescripcion()+"\n"+
+				"Día Inicio: "+getDiaInicio()+"\n"+
+				"Día Fin: "+getDiaFin()+"\n"+
+				"Hora inicio: "+getHoraInicio()+"\n"+
+				"Hora Fin: "+getHoraFin()+"\n"+
+				"Número: "+getNumero();
+	}
 
 }

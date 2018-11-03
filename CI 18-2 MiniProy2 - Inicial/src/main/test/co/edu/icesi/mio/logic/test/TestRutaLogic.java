@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -112,21 +113,27 @@ public class TestRutaLogic {
 	}
 	
 	@Test
-	public void test() {
-
-		assertNotNull(rutalogic);
+	public void testFindByRangeOfDays() {
 
 		try {
-			Tmio1Ruta truta = rutalogic.findById(-39);
-						
-			rutalogic.delete(truta);
+			List<Tmio1Ruta> lRuta = rutalogic.findByRangeOfDays(new BigDecimal(1), new BigDecimal(2));
 			
-			logger.info("La ruta se eliminó satisfactoriamente");
+			logger.info("Las siguientes rutas poseen un día de inicio 1 y un día de finalización de 2");
+			
+			printList(lRuta);
 			
 		} catch (LogicException e) {
 			logger.error(e.getMessage());
 		}
 
 	}
+	
+	public void printList(List lista) {
+		logger.info("Lista");
+		for (Object object : lista) {
+			logger.info(object.toString() + "\n");
+		}
+	}
+
 	
 }

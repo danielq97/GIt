@@ -79,7 +79,7 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		rutaLogic.findById(servicio.getTmio1Ruta().getId());
 		// Se valida que el id de la ruta asociada coincida con el id de ruta de la
 		// clave foranea
-		if (servicio.getTmio1Ruta().getId() == kF.getIdRuta()) {
+		if (servicio.getTmio1Ruta().getId() != kF.getIdRuta()) {
 			throw new LogicException("El id de la ruta asociada no coincide con el id de ruta de la clave foranea");
 		}
 

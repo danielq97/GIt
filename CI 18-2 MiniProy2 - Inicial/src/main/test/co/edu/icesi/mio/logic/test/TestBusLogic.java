@@ -62,7 +62,7 @@ public class TestBusLogic {
 	public void testEliminarBus() {
 
 		try {
-			Tmio1Bus tbus = buslogic.findById(-40);
+			Tmio1Bus tbus = buslogic.findById(-33);
 			buslogic.delete(tbus);
 			logger.info("El bus con placa " + tbus.getPlaca() + " se eliminó correctamente");
 		} catch (LogicException e) {
