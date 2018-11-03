@@ -18,7 +18,7 @@ import co.edu.icesi.mio.model.Tmio1Bus;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
-//@Rollback(false)
+@Rollback(false)
 public class TestBusLogic {
 
 	private static Logger logger = LoggerFactory.getLogger(TestRutaLogic.class);

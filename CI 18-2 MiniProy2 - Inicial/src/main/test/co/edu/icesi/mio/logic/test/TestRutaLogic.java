@@ -24,7 +24,7 @@ import co.edu.icesi.mio.model.Tmio1SitiosRuta;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
-//@Rollback(false)
+@Rollback(false)
 public class TestRutaLogic {
 	
 	private static Logger logger = LoggerFactory.getLogger(TestRutaLogic.class);

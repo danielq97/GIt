@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -26,7 +27,7 @@ import co.edu.icesi.mio.model.Tmio1ServiciosSitio;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
-//@Rollback(false)
+@Rollback(false)
 public class TestConductorLogic {
 	
 	private static Logger logger = LoggerFactory.getLogger(TestConductorLogic.class);
