@@ -70,7 +70,8 @@ public class TestConductorLogic {
 		try {
 			Tmio1Conductore conductor = conductorLogic.findByCedula("1107598456");
 			
-			conductor.setFechaContratacion(new GregorianCalendar(2018, 10, 21).getTime());
+			conductor.setFechaContratacion(new GregorianCalendar(2018,9,14).getTime());
+			logger.info("Fecha de contratacion" + conductor.getFechaContratacion());
 			conductor.setApellidos("Asprilla");
 			conductorLogic.update(conductor);
 			
