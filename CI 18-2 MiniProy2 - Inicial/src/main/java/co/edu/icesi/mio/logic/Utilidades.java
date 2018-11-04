@@ -119,7 +119,7 @@ public class Utilidades {
 
 			LocalDate iniServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
 					.toLocalDate();
-			LocalDate finServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
+			LocalDate finServicio = servicio.getId().getFechaFin().toInstant().atZone(ZoneId.systemDefault())
 					.toLocalDate();
 			for (int i = 0; i < serviciosBus.size() && disponible; i++) {
 				LocalDate iniServicioBus = serviciosBus.get(i).getId().getFechaInicio().toInstant()
@@ -153,29 +153,55 @@ public class Utilidades {
 	public static boolean isConductorAvailable(Tmio1Conductore con, Tmio1Servicio servicio) {
 		boolean disponible = true;
 		List<Tmio1Servicio> serviciosCon = con.getTmio1Servicios();
-		LocalDate iniServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
-				.toLocalDate();
-		LocalDate finServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
-				.toLocalDate();
-		for (int i = 0; i < serviciosCon.size() && disponible; i++) {
-			LocalDate iniServicioCon = serviciosCon.get(i).getId().getFechaInicio().toInstant()
-					.atZone(ZoneId.systemDefault()).toLocalDate();
-			LocalDate finServicioCon = serviciosCon.get(i).getId().getFechaFin().toInstant()
-					.atZone(ZoneId.systemDefault()).toLocalDate();
-			if (!serviciosCon.get(i).getId().equals(servicio.getId())) {
-				if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
-						|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
-					disponible = false;
-				} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
-					disponible = false;
-				} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
-					disponible = false;
+
+		if (servicio.getId().getFechaInicio() instanceof java.sql.Date) {
+			LocalDate iniServicio = ((java.sql.Date) servicio.getId().getFechaInicio()).toLocalDate();
+
+			LocalDate finServicio = ((java.sql.Date) servicio.getId().getFechaFin()).toLocalDate();
+			for (int i = 0; i < serviciosCon.size() && disponible; i++) {
+				LocalDate iniServicioCon = ((java.sql.Date) serviciosCon.get(i).getId().getFechaInicio()).toLocalDate();
+				LocalDate finServicioCon = ((java.sql.Date) serviciosCon.get(i).getId().getFechaFin()).toLocalDate();
+
+				if (!serviciosCon.get(i).getId().equals(servicio.getId())) {
+					if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
+							|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
+						disponible = false;
+					} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
+						disponible = false;
+					} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
+						disponible = false;
+					}
+				} else {
+					break;
 				}
-			} else {
-				break;
 			}
+			return disponible;
+
+		} else {
+			LocalDate iniServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
+					.toLocalDate();
+			LocalDate finServicio = servicio.getId().getFechaFin().toInstant().atZone(ZoneId.systemDefault())
+					.toLocalDate();
+			for (int i = 0; i < serviciosCon.size() && disponible; i++) {
+				LocalDate iniServicioCon = serviciosCon.get(i).getId().getFechaInicio().toInstant()
+						.atZone(ZoneId.systemDefault()).toLocalDate();
+				LocalDate finServicioCon = serviciosCon.get(i).getId().getFechaFin().toInstant()
+						.atZone(ZoneId.systemDefault()).toLocalDate();
+				if (!serviciosCon.get(i).getId().equals(servicio.getId())) {
+					if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
+							|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
+						disponible = false;
+					} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
+						disponible = false;
+					} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
+						disponible = false;
+					}
+				} else {
+					break;
+				}
+			}
+			return disponible;
 		}
-		return disponible;
 	}
 
 	// Convierte una fecha tipo Date a una fecha tipo Calendar
