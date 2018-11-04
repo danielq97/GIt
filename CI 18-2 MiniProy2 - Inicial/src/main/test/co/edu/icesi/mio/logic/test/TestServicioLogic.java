@@ -2,7 +2,9 @@ package co.edu.icesi.mio.logic.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,9 +20,6 @@ import co.edu.icesi.mio.logic.ITmio1BusLogic;
 import co.edu.icesi.mio.logic.ITmio1ConductoreLogic;
 import co.edu.icesi.mio.logic.ITmio1RutaLogic;
 import co.edu.icesi.mio.logic.ITmio1ServicioLogic;
-import co.edu.icesi.mio.model.Tmio1Bus;
-import co.edu.icesi.mio.model.Tmio1Conductore;
-import co.edu.icesi.mio.model.Tmio1Ruta;
 import co.edu.icesi.mio.model.Tmio1Servicio;
 import co.edu.icesi.mio.model.Tmio1ServicioPK;
 
@@ -29,7 +28,7 @@ import co.edu.icesi.mio.model.Tmio1ServicioPK;
 @Rollback(false)
 public class TestServicioLogic {
 
-	private static Logger logger = LoggerFactory.getLogger(TestRutaLogic.class);
+	private static Logger logger = LoggerFactory.getLogger(TestServicioLogic.class);
 
 	@Autowired
 	private ITmio1ServicioLogic servicioLogic;
@@ -57,16 +56,16 @@ public class TestServicioLogic {
 			// BUscar un bus para insertar
 			servicio.setTmio1Bus(buslogic.findById(-43));
 			// Buscar un conductor
-			servicio.setTmio1Conductore(conductoreslogic.findByCedula("1107542311"));
+			servicio.setTmio1Conductore(conductoreslogic.findByCedula("123456789"));
 			// Buscar una ruta
 			servicio.setTmio1Ruta(rutalogic.findById(-37));
 
 			Tmio1ServicioPK pk = new Tmio1ServicioPK();
-			pk.setCedulaConductor("1107542311");
+			pk.setCedulaConductor("123456789");
 			pk.setIdBus(-43);
 			pk.setIdRuta(-37);
-			pk.setFechaInicio(new GregorianCalendar(2018, 8, 10).getTime());
-			pk.setFechaFin(new GregorianCalendar(2018, 8, 24).getTime());
+			pk.setFechaInicio(new GregorianCalendar(2018, 8, 20).getTime());
+			pk.setFechaFin(new GregorianCalendar(2018, 8, 30).getTime());
 
 			servicio.setId(pk);
 
@@ -89,20 +88,22 @@ public class TestServicioLogic {
 	public void testModificarServicio() {
 		
 		Tmio1ServicioPK pk = new Tmio1ServicioPK();
-		pk.setCedulaConductor("1107598456");
+		pk.setCedulaConductor("123456789");
 		pk.setIdBus(-43);
 		pk.setIdRuta(-37);
-		pk.setFechaInicio(new GregorianCalendar(2018, 8, 2).getTime());
-		pk.setFechaFin(new GregorianCalendar(2018, 8, 3).getTime());
+		pk.setFechaInicio(new GregorianCalendar(2018, 8, 20).getTime());
+		pk.setFechaFin(new GregorianCalendar(2018, 8, 30).getTime());
 		
 
 
 		try {
 			Tmio1Servicio servicio = servicioLogic.findById(pk);
-			servicioLogic.delete(servicio);
+			Tmio1Servicio servicioDelete = servicio; 
+			servicioLogic.delete(servicioDelete);
 			
-			servicio.getId().setCedulaConductor("1107542311");
-			servicio.setTmio1Conductore(conductoreslogic.findByCedula("1107542311"));
+			servicio.getId().setIdBus(-34);
+			servicio.setTmio1Bus(buslogic.findById(-34));
+			servicio.getId().setFechaInicio(new GregorianCalendar(2018, 8, 1).getTime());
 
 			servicioLogic.update(servicio);
 			logger.info("Se actualizó el conductor satisfactoriamente");
@@ -123,10 +124,10 @@ public class TestServicioLogic {
 		
 		Tmio1ServicioPK pk = new Tmio1ServicioPK();
 		pk.setCedulaConductor("1107542311");
-		pk.setIdBus(-43);
+		pk.setIdBus(-37);
 		pk.setIdRuta(-37);
-		pk.setFechaInicio(new GregorianCalendar(2018, 8, 10).getTime());
-		pk.setFechaFin(new GregorianCalendar(2018, 8, 24).getTime());
+		pk.setFechaInicio(new GregorianCalendar(2018, 8, 1).getTime());
+		pk.setFechaFin(new GregorianCalendar(2018, 8, 2).getTime());
 
 		try {
 			Tmio1Servicio servicio = servicioLogic.findById(pk);
@@ -139,6 +140,30 @@ public class TestServicioLogic {
 		}
 
 	}
+	
+	@Test
+	public void testFindByRangeOfDates() {
+		
+		Date fechaIni = new GregorianCalendar(2018, 8, 1).getTime();
+		Date fechaFin = new GregorianCalendar(2018, 8, 30).getTime();
 
+		try {
+			List<Tmio1Servicio> lServicio = servicioLogic.findByRangeOfDates(fechaIni, fechaFin);
+			
+			logger.info("Los servicios encontrados desde "+fechaIni+" hasta "+fechaFin+" fueron:");
+			
+			printList(lServicio);
+
+		} catch (LogicException e) {
+			logger.error(e.getMessage());
+		}
+
+	}
+	
+	public void printList(List lista) {
+		for (Object object : lista) {
+			logger.info(object.toString() + "\n");
+		}
+	}
 
 }

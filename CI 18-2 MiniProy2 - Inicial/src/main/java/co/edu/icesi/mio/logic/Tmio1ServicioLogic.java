@@ -101,7 +101,7 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 
 		// Se valida que el bus esté disponible entre las fechas de inicio y fin del
 		// servicio
-		if (!Utilidades.isBusAvailable(servicio.getTmio1Bus(), servicio)) {
+		if (!Utilidades.isBusAvailableC(servicio.getTmio1Bus(), servicio)) {
 			throw new LogicException(
 					"El bus no se encuentra disponible para este servicio para las fechas establecidas");
 		}
@@ -109,7 +109,7 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		// Se valida que el conductor esté disponible entre las fechas de inicio y fin
 		// del
 		// servicio
-		if (!Utilidades.isConductorAvailable(servicio.getTmio1Conductore(), servicio)) {
+		if (!Utilidades.isConductorAvailableC(servicio.getTmio1Conductore(), servicio)) {
 			throw new LogicException(
 					"El conductor no se encuentra disponible para este servicio para las fechas establecidas");
 		}
@@ -198,7 +198,7 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 
 		// Se valida que el bus esté disponible entre las fechas de inicio y fin del
 		// servicio
-		if (!Utilidades.isBusAvailable(servicio.getTmio1Bus(), servicio)) {
+		if (!Utilidades.isBusAvailableC(servicio.getTmio1Bus(), servicio)) {
 			throw new LogicException(
 					"El bus no se encuentra disponible para este servicio para las fechas establecidas");
 		}
@@ -206,7 +206,7 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		// Se valida que el conductor esté disponible entre las fechas de inicio y fin
 		// del
 		// servicio
-		if (!Utilidades.isConductorAvailable(servicio.getTmio1Conductore(), servicio)) {
+		if (!Utilidades.isConductorAvailableC(servicio.getTmio1Conductore(), servicio)) {
 			throw new LogicException(
 					"El conductor no se encuentra disponible para este servicio para las fechas establecidas");
 		}
@@ -320,9 +320,9 @@ public class Tmio1ServicioLogic implements ITmio1ServicioLogic {
 		// Se valida que exista un servicio con la clave foranea pasada por parámetro
 		Tmio1Servicio servicio = is.findById(em, id);
 		if (servicio == null) {
-			throw new LogicException("El servicio asociado a: \nun conductor con cédula: " + id.getCedulaConductor()
+			throw new LogicException("El servicio asociado a: \nconductor con cédula: " + id.getCedulaConductor()
 					+ "\nruta con id: " + id.getIdRuta() + "\nbus con id: " + id.getIdBus()
-					+ "\n\n con fechas: \nInicio: " + id.getFechaInicio().toString() + "\nFin: " + id.getFechaFin());
+					+ "\n\n con fechas: \nInicio: " + id.getFechaInicio().toString() + "\nFin: " + id.getFechaFin() + "\n no existe");
 		}
 
 		return servicio;

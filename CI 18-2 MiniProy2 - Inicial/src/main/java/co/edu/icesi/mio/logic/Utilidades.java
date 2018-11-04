@@ -90,60 +90,126 @@ public class Utilidades {
 
 		boolean disponible = true;
 		List<Tmio1Servicio> serviciosBus = bus.getTmio1Servicios();
-		if (servicio.getId().getFechaInicio() instanceof java.sql.Date) {
+		if (serviciosBus.size() != 0) {
+			if (servicio.getId().getFechaInicio() instanceof java.sql.Date
+					&& serviciosBus.get(0).getId().getFechaInicio() instanceof java.sql.Date) {
 
-			LocalDate iniServicio = ((java.sql.Date) servicio.getId().getFechaInicio()).toLocalDate();
+				LocalDate iniServicio = ((java.sql.Date) servicio.getId().getFechaInicio()).toLocalDate();
 
-			LocalDate finServicio = ((java.sql.Date) servicio.getId().getFechaFin()).toLocalDate();
+				LocalDate finServicio = ((java.sql.Date) servicio.getId().getFechaFin()).toLocalDate();
 
-			for (int i = 0; i < serviciosBus.size() && disponible; i++) {
-				LocalDate iniServicioBus = ((java.sql.Date) serviciosBus.get(i).getId().getFechaInicio()).toLocalDate();
-				LocalDate finServicioBus = ((java.sql.Date) serviciosBus.get(i).getId().getFechaFin()).toLocalDate();
-				if (!serviciosBus.get(i).getId().equals(servicio.getId())) {
+				for (int i = 0; i < serviciosBus.size() && disponible; i++) {
+					LocalDate iniServicioBus = ((java.sql.Date) serviciosBus.get(i).getId().getFechaInicio())
+							.toLocalDate();
+					LocalDate finServicioBus = ((java.sql.Date) serviciosBus.get(i).getId().getFechaFin())
+							.toLocalDate();
+					if (!serviciosBus.get(i).getId().equals(servicio.getId())) {
 
-					if (iniServicio.isEqual(iniServicioBus) || iniServicio.isEqual(finServicioBus)
-							|| finServicio.isEqual(iniServicioBus) || finServicio.isEqual(finServicioBus)) {
-						disponible = false;
-					} else if (iniServicio.isAfter(iniServicioBus) && iniServicio.isBefore(finServicioBus)) {
-						disponible = false;
-					} else if (finServicio.isAfter(iniServicioBus) && finServicio.isBefore(finServicioBus)) {
-						disponible = false;
+						if (iniServicio.isEqual(iniServicioBus) || iniServicio.isEqual(finServicioBus)
+								|| finServicio.isEqual(iniServicioBus) || finServicio.isEqual(finServicioBus)) {
+							disponible = false;
+						} else if (iniServicio.isAfter(iniServicioBus) && iniServicio.isBefore(finServicioBus)) {
+							disponible = false;
+						} else if (finServicio.isAfter(iniServicioBus) && finServicio.isBefore(finServicioBus)) {
+							disponible = false;
+						}
+
+					} else {
+						break;
 					}
-
-				} else {
-					break;
 				}
-			}
-			return disponible;
-		} else {
+				return disponible;
+			} else if (servicio.getId().getFechaInicio() instanceof java.util.Date
+					&& serviciosBus.get(0).getId().getFechaInicio() instanceof java.util.Date) {
 
-			LocalDate iniServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
-					.toLocalDate();
-			LocalDate finServicio = servicio.getId().getFechaFin().toInstant().atZone(ZoneId.systemDefault())
-					.toLocalDate();
-			for (int i = 0; i < serviciosBus.size() && disponible; i++) {
-				LocalDate iniServicioBus = serviciosBus.get(i).getId().getFechaInicio().toInstant()
-						.atZone(ZoneId.systemDefault()).toLocalDate();
-				LocalDate finServicioBus = serviciosBus.get(i).getId().getFechaFin().toInstant()
-						.atZone(ZoneId.systemDefault()).toLocalDate();
-				if (!serviciosBus.get(i).getId().equals(servicio.getId())) {
+				LocalDate iniServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
+						.toLocalDate();
+				LocalDate finServicio = servicio.getId().getFechaFin().toInstant().atZone(ZoneId.systemDefault())
+						.toLocalDate();
+				for (int i = 0; i < serviciosBus.size() && disponible; i++) {
+					LocalDate iniServicioBus = serviciosBus.get(i).getId().getFechaInicio().toInstant()
+							.atZone(ZoneId.systemDefault()).toLocalDate();
+					LocalDate finServicioBus = serviciosBus.get(i).getId().getFechaFin().toInstant()
+							.atZone(ZoneId.systemDefault()).toLocalDate();
+					if (!serviciosBus.get(i).getId().equals(servicio.getId())) {
 
-					if (iniServicio.isEqual(iniServicioBus) || iniServicio.isEqual(finServicioBus)
-							|| finServicio.isEqual(iniServicioBus) || finServicio.isEqual(finServicioBus)) {
-						disponible = false;
-					} else if (iniServicio.isAfter(iniServicioBus) && iniServicio.isBefore(finServicioBus)) {
-						disponible = false;
-					} else if (finServicio.isAfter(iniServicioBus) && finServicio.isBefore(finServicioBus)) {
-						disponible = false;
+						if (iniServicio.isEqual(iniServicioBus) || iniServicio.isEqual(finServicioBus)
+								|| finServicio.isEqual(iniServicioBus) || finServicio.isEqual(finServicioBus)) {
+							disponible = false;
+						} else if (iniServicio.isAfter(iniServicioBus) && iniServicio.isBefore(finServicioBus)) {
+							disponible = false;
+						} else if (finServicio.isAfter(iniServicioBus) && finServicio.isBefore(finServicioBus)) {
+							disponible = false;
+						}
+
+					} else {
+						break;
 					}
-
-				} else {
-					break;
 				}
+				return disponible;
+
+			} else if (servicio.getId().getFechaInicio() instanceof java.util.Date
+					&& serviciosBus.get(0).getId().getFechaInicio() instanceof java.sql.Date) {
+
+				LocalDate iniServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
+						.toLocalDate();
+				LocalDate finServicio = servicio.getId().getFechaFin().toInstant().atZone(ZoneId.systemDefault())
+						.toLocalDate();
+				for (int i = 0; i < serviciosBus.size() && disponible; i++) {
+					LocalDate iniServicioBus = ((java.sql.Date) serviciosBus.get(i).getId().getFechaInicio())
+							.toLocalDate();
+					LocalDate finServicioBus = ((java.sql.Date) serviciosBus.get(i).getId().getFechaFin())
+							.toLocalDate();
+					if (!serviciosBus.get(i).getId().equals(servicio.getId())) {
+
+						if (iniServicio.isEqual(iniServicioBus) || iniServicio.isEqual(finServicioBus)
+								|| finServicio.isEqual(iniServicioBus) || finServicio.isEqual(finServicioBus)) {
+							disponible = false;
+						} else if (iniServicio.isAfter(iniServicioBus) && iniServicio.isBefore(finServicioBus)) {
+							disponible = false;
+						} else if (finServicio.isAfter(iniServicioBus) && finServicio.isBefore(finServicioBus)) {
+							disponible = false;
+						}
+
+					} else {
+						break;
+					}
+				}
+				return disponible;
+
+			} else// if(servicio.getId().getFechaInicio() instanceof java.sql.Date &&
+					// serviciosBus.get(0).getId().getFechaInicio() instanceof java.util.Date)
+			{
+
+				LocalDate iniServicio = ((java.sql.Date) servicio.getId().getFechaInicio()).toLocalDate();
+
+				LocalDate finServicio = ((java.sql.Date) servicio.getId().getFechaFin()).toLocalDate();
+				for (int i = 0; i < serviciosBus.size() && disponible; i++) {
+					LocalDate iniServicioBus = serviciosBus.get(i).getId().getFechaInicio().toInstant()
+							.atZone(ZoneId.systemDefault()).toLocalDate();
+					LocalDate finServicioBus = serviciosBus.get(i).getId().getFechaFin().toInstant()
+							.atZone(ZoneId.systemDefault()).toLocalDate();
+					if (!serviciosBus.get(i).getId().equals(servicio.getId())) {
+
+						if (iniServicio.isEqual(iniServicioBus) || iniServicio.isEqual(finServicioBus)
+								|| finServicio.isEqual(iniServicioBus) || finServicio.isEqual(finServicioBus)) {
+							disponible = false;
+						} else if (iniServicio.isAfter(iniServicioBus) && iniServicio.isBefore(finServicioBus)) {
+							disponible = false;
+						} else if (finServicio.isAfter(iniServicioBus) && finServicio.isBefore(finServicioBus)) {
+							disponible = false;
+						}
+
+					} else {
+						break;
+					}
+				}
+				return disponible;
+
 			}
-			return disponible;
 
 		}
+		return true;
 
 	}
 
@@ -154,54 +220,160 @@ public class Utilidades {
 		boolean disponible = true;
 		List<Tmio1Servicio> serviciosCon = con.getTmio1Servicios();
 
-		if (servicio.getId().getFechaInicio() instanceof java.sql.Date) {
-			LocalDate iniServicio = ((java.sql.Date) servicio.getId().getFechaInicio()).toLocalDate();
+		if (serviciosCon.size() != 0) {
+			if (servicio.getId().getFechaInicio() instanceof java.sql.Date
+					&& serviciosCon.get(0).getId().getFechaInicio() instanceof java.sql.Date) {
+				LocalDate iniServicio = ((java.sql.Date) servicio.getId().getFechaInicio()).toLocalDate();
 
-			LocalDate finServicio = ((java.sql.Date) servicio.getId().getFechaFin()).toLocalDate();
-			for (int i = 0; i < serviciosCon.size() && disponible; i++) {
-				LocalDate iniServicioCon = ((java.sql.Date) serviciosCon.get(i).getId().getFechaInicio()).toLocalDate();
-				LocalDate finServicioCon = ((java.sql.Date) serviciosCon.get(i).getId().getFechaFin()).toLocalDate();
+				LocalDate finServicio = ((java.sql.Date) servicio.getId().getFechaFin()).toLocalDate();
+				for (int i = 0; i < serviciosCon.size() && disponible; i++) {
+					LocalDate iniServicioCon = ((java.sql.Date) serviciosCon.get(i).getId().getFechaInicio()).toLocalDate();
+					LocalDate finServicioCon = ((java.sql.Date) serviciosCon.get(i).getId().getFechaFin()).toLocalDate();
 
-				if (!serviciosCon.get(i).getId().equals(servicio.getId())) {
-					if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
-							|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
-						disponible = false;
-					} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
-						disponible = false;
-					} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
-						disponible = false;
+					if (!serviciosCon.get(i).getId().equals(servicio.getId())) {
+						if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
+								|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
+							disponible = false;
+						} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
+							disponible = false;
+						} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
+							disponible = false;
+						}
+					} else {
+						break;
 					}
-				} else {
-					break;
 				}
-			}
-			return disponible;
+				return disponible;
 
-		} else {
-			LocalDate iniServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
-					.toLocalDate();
-			LocalDate finServicio = servicio.getId().getFechaFin().toInstant().atZone(ZoneId.systemDefault())
-					.toLocalDate();
-			for (int i = 0; i < serviciosCon.size() && disponible; i++) {
-				LocalDate iniServicioCon = serviciosCon.get(i).getId().getFechaInicio().toInstant()
-						.atZone(ZoneId.systemDefault()).toLocalDate();
-				LocalDate finServicioCon = serviciosCon.get(i).getId().getFechaFin().toInstant()
-						.atZone(ZoneId.systemDefault()).toLocalDate();
-				if (!serviciosCon.get(i).getId().equals(servicio.getId())) {
-					if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
-							|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
-						disponible = false;
-					} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
-						disponible = false;
-					} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
-						disponible = false;
+			} else if (servicio.getId().getFechaInicio() instanceof java.util.Date
+					&& serviciosCon.get(0).getId().getFechaInicio() instanceof java.util.Date) {
+				LocalDate iniServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
+						.toLocalDate();
+				LocalDate finServicio = servicio.getId().getFechaFin().toInstant().atZone(ZoneId.systemDefault())
+						.toLocalDate();
+				for (int i = 0; i < serviciosCon.size() && disponible; i++) {
+					LocalDate iniServicioCon = serviciosCon.get(i).getId().getFechaInicio().toInstant()
+							.atZone(ZoneId.systemDefault()).toLocalDate();
+					LocalDate finServicioCon = serviciosCon.get(i).getId().getFechaFin().toInstant()
+							.atZone(ZoneId.systemDefault()).toLocalDate();
+					if (!serviciosCon.get(i).getId().equals(servicio.getId())) {
+						if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
+								|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
+							disponible = false;
+						} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
+							disponible = false;
+						} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
+							disponible = false;
+						}
+					} else {
+						break;
 					}
-				} else {
-					break;
 				}
+				return disponible;
+			} else if (servicio.getId().getFechaInicio() instanceof java.sql.Date
+					&& serviciosCon.get(0).getId().getFechaInicio() instanceof java.util.Date) {
+				LocalDate iniServicio = ((java.sql.Date) servicio.getId().getFechaInicio()).toLocalDate();
+
+				LocalDate finServicio = ((java.sql.Date) servicio.getId().getFechaFin()).toLocalDate();
+				for (int i = 0; i < serviciosCon.size() && disponible; i++) {
+					LocalDate iniServicioCon = serviciosCon.get(i).getId().getFechaInicio().toInstant()
+							.atZone(ZoneId.systemDefault()).toLocalDate();
+					LocalDate finServicioCon = serviciosCon.get(i).getId().getFechaFin().toInstant()
+							.atZone(ZoneId.systemDefault()).toLocalDate();
+					if (!serviciosCon.get(i).getId().equals(servicio.getId())) {
+						if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
+								|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
+							disponible = false;
+						} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
+							disponible = false;
+						} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
+							disponible = false;
+						}
+					} else {
+						break;
+					}
+				}
+				return disponible;
+			} else // if(servicio.getId().getFechaInicio() instanceof java.util.Date &&
+					// serviciosCon.get(0).getId().getFechaInicio() instanceof java.sql.Date)
+			{
+				LocalDate iniServicio = servicio.getId().getFechaInicio().toInstant().atZone(ZoneId.systemDefault())
+						.toLocalDate();
+				LocalDate finServicio = servicio.getId().getFechaFin().toInstant().atZone(ZoneId.systemDefault())
+						.toLocalDate();
+				for (int i = 0; i < serviciosCon.size() && disponible; i++) {
+					LocalDate iniServicioCon = ((java.sql.Date) serviciosCon.get(i).getId().getFechaInicio()).toLocalDate();
+					LocalDate finServicioCon = ((java.sql.Date) serviciosCon.get(i).getId().getFechaFin()).toLocalDate();
+					if (!serviciosCon.get(i).getId().equals(servicio.getId())) {
+						if (iniServicio.isEqual(iniServicioCon) || iniServicio.isEqual(finServicioCon)
+								|| finServicio.isEqual(iniServicioCon) || finServicio.isEqual(finServicioCon)) {
+							disponible = false;
+						} else if (iniServicio.isAfter(iniServicioCon) && iniServicio.isBefore(finServicioCon)) {
+							disponible = false;
+						} else if (finServicio.isAfter(iniServicioCon) && finServicio.isBefore(finServicioCon)) {
+							disponible = false;
+						}
+					} else {
+						break;
+					}
+				}
+				return disponible;
 			}
-			return disponible;
+			
 		}
+		return true;
+	}
+	
+	public static boolean isBusAvailableC(Tmio1Bus bus, Tmio1Servicio servicio) {
+		boolean resultado = true;
+		List<Tmio1Servicio> serviciosBus = bus.getTmio1Servicios();
+		if (serviciosBus.size() != 0) {
+			Calendar iniServicio = toCalendar(servicio.getId().getFechaInicio());
+			Calendar finServicio = toCalendar(servicio.getId().getFechaFin());
+			for (int i = 0; i < serviciosBus.size() && resultado; i++) {
+				Calendar iniServicioBus = toCalendar(serviciosBus.get(i).getId().getFechaInicio());
+				Calendar finServicioBus = toCalendar(serviciosBus.get(i).getId().getFechaFin());
+				if (!serviciosBus.get(i).getId().equals(servicio.getId())) {
+					if (iniServicio.equals(iniServicioBus) || iniServicio.equals(finServicioBus)
+							|| finServicio.equals(iniServicioBus) || finServicio.equals(finServicioBus)) {
+						resultado = false;
+					} else if (iniServicio.after(iniServicioBus) && iniServicio.before(finServicioBus)) {
+						resultado = false;
+					} else if (finServicio.after(iniServicioBus) && finServicio.before(finServicioBus)) {
+						resultado = false;
+					}
+				} else {
+					break;
+				}
+			}
+		}
+		return resultado;
+	}
+	
+	public static boolean isConductorAvailableC(Tmio1Conductore conductor, Tmio1Servicio servicio) {
+		boolean resultado = true;
+		List<Tmio1Servicio> serviciosBus = conductor.getTmio1Servicios();
+		if (serviciosBus.size() != 0) {
+			Calendar iniServicio = toCalendar(servicio.getId().getFechaInicio());
+			Calendar finServicio = toCalendar(servicio.getId().getFechaFin());
+			for (int i = 0; i < serviciosBus.size() && resultado; i++) {
+				Calendar iniServicioCon = toCalendar(serviciosBus.get(i).getId().getFechaInicio());
+				Calendar finServicioCon = toCalendar(serviciosBus.get(i).getId().getFechaFin());
+				if (!serviciosBus.get(i).getId().equals(servicio.getId())) {
+					if (iniServicio.equals(iniServicioCon) || iniServicio.equals(finServicioCon)
+							|| finServicio.equals(iniServicioCon) || finServicio.equals(finServicioCon)) {
+						resultado = false;
+					} else if (iniServicio.after(iniServicioCon) && iniServicio.before(finServicioCon)) {
+						resultado = false;
+					} else if (finServicio.after(iniServicioCon) && finServicio.before(finServicioCon)) {
+						resultado = false;
+					}
+				} else {
+					break;
+				}
+			}
+		}
+		return resultado;
 	}
 
 	// Convierte una fecha tipo Date a una fecha tipo Calendar

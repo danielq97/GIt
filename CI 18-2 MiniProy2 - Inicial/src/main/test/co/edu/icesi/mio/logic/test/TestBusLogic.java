@@ -21,7 +21,7 @@ import co.edu.icesi.mio.model.Tmio1Bus;
 @Rollback(false)
 public class TestBusLogic {
 
-	private static Logger logger = LoggerFactory.getLogger(TestRutaLogic.class);
+	private static Logger logger = LoggerFactory.getLogger(TestBusLogic.class);
 
 	@Autowired
 	private ITmio1BusLogic buslogic;
